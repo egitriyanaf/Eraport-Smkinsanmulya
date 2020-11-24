@@ -199,6 +199,4 @@ Electrical:
     </div>
 </div>
 
-test
-
 @endsection
