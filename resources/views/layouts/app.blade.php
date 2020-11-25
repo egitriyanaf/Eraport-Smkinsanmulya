@@ -77,7 +77,7 @@
                     <ul class="metismenu" id="menu1">
                         //navigasi admin
                         <li>
-                            <a title="Admin" href="#" aria-expanded="false"><span class="educate-icon educate-apps icon-wrap"></span> <span class="mini-click-non">Admin</span></a>
+                            <a title="Admin" href="{{url('/admin')}}" aria-expanded="false"><span class="educate-icon educate-apps icon-wrap"></span> <span class="mini-click-non">Admin</span></a>
                         </li>
                         <li>
                             <a class="has-arrow" href="#" aria-expanded="false"><span class="educate-icon educate-course icon-wrap"></span> <span class="mini-click-non">Data Akademik</span></a>
@@ -306,6 +306,7 @@
             
         </div>
       @yield('body')
+      <!--footer-->
         <div class="footer-copyright-area">
             <div class="container-fluid">
                 <div class="row">

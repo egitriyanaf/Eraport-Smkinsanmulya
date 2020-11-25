@@ -1,0 +1,30 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class admin extends Model
+{
+    protected $fillable = [
+        'nip',
+        'nama',
+        'jenis_kelamin',
+        'telepon',
+        'photo',
+        'email',
+        'password',
+        'created_at',
+        'updated_at'
+    ];
+
+    protected $hidden = [
+        'password',
+        'remember_token',
+    ];
+
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+    ];
+}

@@ -1,44 +1,3 @@
-@extends('layouts.app')
-@section('edit admin')
-@endsection
-@section('body')
-<div class="breadcome-area">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <div class="breadcome-list">
-                    <div class="row">
-                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                        </div>
-
-                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                            <ul class="breadcome-menu">
-                                <li><a href="{{url('/admin')}}">Management Admin</a> <span class="bread-slash">/</span>
-                                </li>
-                                <li><span class="bread-blod">Edit Admin</span>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-status pop up alert--->
-@if (session('status'))
-<div class="alert alert-success" role="alert"><i class="fa fa-bell"></i>
-    {{ session('status') }}
-</div>
-<script>
-  window.setTimeout(function() {
-    $(".alert").fadeTo(500, 0).slideUp(500, function(){
-      $(this).remove(); 
-    });
-  }, 1000);
-</script>
-@endif
-    </div>
-</div>
-
 <!--Modal Edit-->
 <div class="modal-body">
   <form action="{{ url('updateadmin/'.$Admin->id)}}" method="POST" enctype="multipart/form-data">
@@ -78,12 +37,11 @@
         <input type="password" name="password" id="password" class="form-control"  value="{{$Admin->password}}" autofocus required>
     </div>
 </div>
-<div class="modal-footer">
-    <a href="{{url('/admin')}}" class="btn btn-secondary">Tutup</a>
-    <button type="submit" class="btn btn-primary">Simpan</button>
-  </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+        <button type="submit" class="btn btn-primary">Simpan</button>
+      </div>
     </form>
     </div>
   </div>
 </div>
-@endsection

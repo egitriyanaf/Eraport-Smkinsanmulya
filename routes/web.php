@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\AdminController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,4 +21,10 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [HomeController::class, 'index'])->name('home');
+
+Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
+Route::post('/tambahadmin', [AdminController::class, 'tambahadmin'])->name('admin.tambah');
+Route::get('/editadmin/{id}', [AdminController::class, 'editadmin'])->name('admin.edit');
+Route::patch('/updateadmin/{id}', [AdminController::class, 'updateadmin'])->name('admin.update');
+Route::delete('/deleteadmin/{id}',[AdminController::class, 'deleteadmin'])->name('admin.delete');

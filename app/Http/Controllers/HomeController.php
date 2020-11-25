@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Admin;
 
 class HomeController extends Controller
 {
@@ -24,7 +25,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $user=User::paginate(10);
-        return view('home', ['User'=>$user]);
+        User::all();
+        $admin=Admin::paginate();
+        return view('home',['Admin'=>$admin]);
     }
 }

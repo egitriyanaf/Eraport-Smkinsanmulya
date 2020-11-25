@@ -47,7 +47,7 @@ Dashboard
                             <i class="educate-icon educate-apps"></i>
                         </div>
                         <div class="m-t-xl widget-cl-1">
-                            <h1 class="text-success">{{($User->total())}}</h1>
+                            <h1 class="text-success">{{($Admin->total())}}</h1>
                         </div>
                     </div>
                 </div>
