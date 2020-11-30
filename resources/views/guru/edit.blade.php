@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('edit admin')
+@section('edit guru')
 @endsection
 @section('body')
 <div class="breadcome-area">
@@ -13,9 +13,9 @@
 
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                             <ul class="breadcome-menu">
-                                <li><a href="{{url('/admin')}}">Management Admin</a> <span class="bread-slash">/</span>
+                                <li><a href="{{url('/guru')}}">Management Guru</a> <span class="bread-slash">/</span>
                                 </li>
-                                <li><span class="bread-blod">Edit Admin</span>
+                                <li><span class="bread-blod">Edit Guru</span>
                                 </li>
                             </ul>
                         </div>
@@ -41,49 +41,49 @@
 
 <!--Modal Edit-->
 <div class="modal-body">
-  <form action="{{ url('updateadmin/'.$Admin->id)}}" method="POST" enctype="multipart/form-data">
+  <form action="{{ url('updateguru/'.$Guru->id)}}" method="POST" enctype="multipart/form-data">
     @method('patch')
     @csrf
     <div class="form-group">
-        <label>Id Admin</label>
-        <input type="text" name="nip" class="form-control" value="{{$Admin->id}}" readonly>
+        <label>Id guru</label>
+        <input type="text" name="nip" class="form-control" value="{{$Guru->id}}" readonly>
     </div>
     <div class="form-group">
         <label>NIP</label>
-        <input type="text" name="nip" class="form-control" value="{{$Admin->nip}}" autofocus required maxlength="10">
+        <input type="text" name="nip" class="form-control" value="{{$Guru->nip}}" autofocus required maxlength="10">
     </div>
     <div class="form-group">
         <label>Nama</label>
-        <input type="text" name="nama" class="form-control" value="{{$Admin->nama}}" autofocus required maxlength="25">
+        <input type="text" name="nama" class="form-control" value="{{$Guru->nama}}" autofocus required maxlength="25">
     </div>
     <div class="form-group">
         <label>Jenis Kelamin</label>
-        <select class="form-control" name="jeniskelamin" id="jeniskelamin" value="{{$Admin->jenis_kelamin}}">
-            <option value="Laki-laki" @if ($Admin->jenis_kelamin=='Laki-laki')
+        <select class="form-control" name="jeniskelamin" id="jeniskelamin" value="{{$Guru->jenis_kelamin}}">
+            <option value="Laki-laki" @if ($Guru->jenis_kelamin=='Laki-laki')
               selected @endif>Laki-laki</option>
-            <option value="Perempuan" @if ($Admin->jenis_kelamin=='Perempuan')
+            <option value="Perempuan" @if ($Guru->jenis_kelamin=='Perempuan')
               selected @endif>Perempuan</option>
         </select>
     </div>
     <div class="form-group">
         <label>Telepon</label>
-        <input type="text" name="telepon" class="form-control" value="{{$Admin->telepon}}" autofocus required maxlength="16">
+        <input type="text" name="telepon" class="form-control" value="{{$Guru->telepon}}" autofocus required maxlength="16">
     </div>
         <div class="form-group">
           <label for="uploadphoto">Upload Photo</label>
-          <input type="file" name="photo" class="form-control-file" id="uploadphoto">{{$Admin->photo}} 
+          <input type="file" name="photo" class="form-control-file" id="uploadphoto">{{$Guru->photo}} 
         </div>
     <div class="form-group">
         <label>Email</label>
-        <input type="email" name="email" id="email" class="form-control"  value="{{$Admin->email}}" autofocus required>
+        <input type="email" name="email" id="email" class="form-control"  value="{{$Guru->email}}" autofocus required>
     </div>
     <div class="form-group">
         <label>Password</label>
-        <input type="password" name="password" id="password" class="form-control"  value="{{$Admin->password}}" autofocus required>
+        <input type="password" name="password" id="password" class="form-control"  value="{{$Guru->password}}" autofocus required>
     </div>
 </div>
 <div class="modal-footer">
-    <a href="{{url('/admin')}}" class="btn btn-secondary">Tutup</a>
+    <a href="{{url('/guru')}}" class="btn btn-secondary">Tutup</a>
     <button type="submit" class="btn btn-primary">Simpan</button>
   </div>
     </form>

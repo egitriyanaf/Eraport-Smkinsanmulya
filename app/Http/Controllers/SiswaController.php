@@ -4,35 +4,36 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
-use App\Models\Admin;
+use App\Models\Siswa;
 
-class AdminController extends Controller
+
+class SiswaController extends Controller
 {
     public function index()
     {
-    $admin=Admin::paginate(5);
-    $admin->useBootstrap();    
-    return view('admin/index',['Admin'=>$admin]);
+    $siswa=Siswa::paginate(5);
+    $siswa->useBootstrap();    
+    return view('siswa/index',['Siswa'=>$siswa]);
     }
 
     public function search(Request $request)
     {
         $cari=$request->cari;
-        $admin=Admin::where('nama','LIKE',"%".$cari."%")
+        $siswa=Siswa::where('nama','LIKE',"%".$cari."%")
         ->paginate();
-        return view('admin/index',['Admin'=>$admin]);
+        return view('siswa/index',['Siswa'=>$siswa]);
     }
 
-    public function tambahadmin(Request $request)
+    public function tambahsiswa(Request $request)
     {
         if ($request->file('photo')) {
             $photo = $request->file('photo');
         $name= $request->file('photo')->getClientOriginalName();
         $extension = $request->file('photo')->extension();
         $path = $photo->storeAs(
-            'avatar admin', $name, 'public'
+            'avatar siswa', $name, 'public'
         );
-        Admin::create([
+        Siswa::create([
                 'nip' => $request->nip,
                 'nama' => $request->nama,
                 'jenis_kelamin' => $request->jeniskelamin,
@@ -41,40 +42,38 @@ class AdminController extends Controller
                 'email' => $request->email,
                 'password' => Hash::make($request['password'])
                 ]);
-        }
-        else {
-            Admin::create([
-                'nip' => $request->nip,
-                'nama' => $request->nama,
-                'jenis_kelamin' => $request->jeniskelamin,
-                'telepon' => $request->telepon,
-                'email' => $request->email,
-                'password' => Hash::make($request['password'])
-                ]);    
-        }
-        
-        
-        return redirect('/admin')->with('status', 'data berhasil ditambahkan!');
+            }
+            else {
+                Siswa::create([
+                    'nip' => $request->nip,
+                    'nama' => $request->nama,
+                    'jenis_kelamin' => $request->jeniskelamin,
+                    'telepon' => $request->telepon,
+                    'email' => $request->email,
+                    'password' => Hash::make($request['password'])
+                    ]);
+            }
+        return redirect('/siswa')->with('status', 'data berhasil ditambahkan!');
     }
 
-    public function editadmin($id)
+    public function editsiswa($id)
     {
-        $admin=Admin::find($id);
-      return view('/admin/edit',['Admin' => $admin]);
+        $siswa=Siswa::find($id);
+      return view('/siswa/edit',['Siswa' => $siswa]);
     }
 
-    public function updateadmin(Request $request, $id)
+    public function updatesiswa(Request $request, $id)
     {   
-        $admin=Admin::FindOrFail($id);
-        $lokasifile = storage_path().'/app/public/avatar admin/'.$admin->photo;
+        $siswa=siswa::FindOrFail($id);
+        $lokasifile = storage_path().'/app/public/avatar siswa/'.$siswa->photo;
         if ($request->File('photo')) {
             $photo = $request->file('photo');
             $name= $request->file('photo')->getClientOriginalName();
             $extension = $request->file('photo')->extension();
             $path = $photo->storeAs(
-                'avatar admin', $name, 'public'
+                'avatar siswa', $name, 'public'
             ); 
-            $admin->update([
+            $siswa->update([
                     'nip' => $request->nip,
                     'nama' => $request->nama,
                     'jenis_kelamin' => $request->jeniskelamin,
@@ -84,7 +83,7 @@ class AdminController extends Controller
                     'password' => Hash::make($request['password'])
             ]);
             } 
-            $admin->update([
+            $siswa->update([
                 'nip' => $request->nip,
                 'nama' => $request->nama,
                 'jenis_kelamin' => $request->jeniskelamin,
@@ -93,17 +92,12 @@ class AdminController extends Controller
                 'password' => Hash::make($request['password'])
         ]);
             
-        return redirect('/admin')->with('status', 'data berhasil diupdate!');  
+        return redirect('/siswa')->with('status', 'data berhasil diupdate!');  
     }
 
-    public function deleteadmin($id)
+    public function deletesiswa($id)
     {   
-        $admin=Admin::find($id);
-        $lokasifile = storage_path().'/app/public/avatar admin/'.$admin->photo;
-        if ($admin->exists('photo')) {
-            unlink($lokasifile);
-             }
-             $admin->delete();
-        return redirect('/admin')->with('status', 'data berhasil dihapus!');
+        Siswa::find($id)->delete();       
+        return redirect('/siswa')->with('status', 'data berhasil dihapus!');
     }
 }

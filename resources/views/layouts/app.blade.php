@@ -62,6 +62,9 @@
     <!-- modernizr JS
         ============================================ -->
     <script src="{{asset('asset/js/vendor/modernizr-2.8.3.min.js')}}"></script>
+
+
+        
 </head>
 
 <body>
@@ -77,7 +80,12 @@
                     <ul class="metismenu" id="menu1">
                         //navigasi admin
                         <li>
-                            <a title="Admin" href="{{url('/admin')}}" aria-expanded="false"><span class="educate-icon educate-apps icon-wrap"></span> <span class="mini-click-non">Admin</span></a>
+                            <a class="has-arrow" href="#" aria-expanded="false"><span class="educate-icon educate-apps icon-wrap"></span> <span class="mini-click-non">User</span></a>
+                            <ul class="submenu-angle" aria-expanded="false">
+                                <li><a title="Admin" href="{{url('/admin')}}"><span class="mini-sub-pro">Admin</span></a></li>
+                                <li><a title="Guru" href="{{url('/guru')}}"><span class="mini-sub-pro">Guru</span></a></li>
+                                <li><a title="Siswa" href="{{url('/siswa')}}"><span class="mini-sub-pro">Siswa</span></a></li>
+                            </ul>
                         </li>
                         <li>
                             <a class="has-arrow" href="#" aria-expanded="false"><span class="educate-icon educate-course icon-wrap"></span> <span class="mini-click-non">Data Akademik</span></a>
@@ -194,103 +202,52 @@
                             <div class="mobile-menu">
                                 <nav id="dropdown">
                                     <ul class="mobile-menu-nav">
-                                        <li><a href="#">Dashboard</a></li>
-
-                                        <li><a data-toggle="collapse" data-target="#demoevent" href="#">Admin <span class="admin-project-icon edu-icon edu-down-arrow"></span></a>
+                                        <li><a href="{{url('/home')}}">Dashboard</a></li>
+                                        <li><a data-toggle="collapse" data-target="#demoevent" href="#">User<span class="admin-project-icon edu-icon edu-down-arrow"></span></a>
                                             <ul id="demoevent" class="collapse dropdown-header-top">
-                                                <li><a href="#">Data Seluruh Admin</a>
+                                                <li><a href="{{url('/admin')}}">Admin</a>
                                                 </li>
-                                                <li><a href="#">Tambah Admin</a>
+                                                <li><a href="{{url('/guru')}}">Guru</a>
                                                 </li>
-                                                <li><a href="#">Edit Admin</a>
+                                                <li><a href="{{url('/siswa')}}">Siswa</a>
                                                 </li>
                                             </ul>
                                         </li>
-                                        
-                                        <li><a data-toggle="collapse" data-target="#demoevent" href="#">Guru <span class="admin-project-icon edu-icon edu-down-arrow"></span></a>
+                                        <li><a data-toggle="collapse" data-target="#demoevent" href="#">Data Akademik<span class="admin-project-icon edu-icon edu-down-arrow"></span></a>
                                             <ul id="demoevent" class="collapse dropdown-header-top">
-                                                <li><a href="#">Data Seluruh Guru</a>
+                                                <li><a href="#">Mata Pelajaran</a>
                                                 </li>
-                                                <li><a href="#">Tambah Guru</a>
+                                                <li><a href="#">Kelas</a>
                                                 </li>
-                                                <li><a href="#">Edit Guru</a>
+                                                <li><a href="#">Kelas Siswa</a>
+                                                </li>
+                                                <li><a href="#">Nilai</a>
                                                 </li>
                                             </ul>
                                         </li>
-                                        <li><a data-toggle="collapse" data-target="#demopro" href="#">Siswa <span class="admin-project-icon edu-icon edu-down-arrow"></span></a>
+                                        <li><a data-toggle="collapse" data-target="#demopro" href="#">Cetak Laporan<span class="admin-project-icon edu-icon edu-down-arrow"></span></a>
                                             <ul id="demopro" class="collapse dropdown-header-top">
-                                                <li><a href="#">Data Seluruh Siswa</a>
+                                                <li><a href="#">Laporan Siswa</a>
                                                 </li>
-                                                <li><a href="#">Tambah Siswa</a>
+                                                <li><a href="#">Laporan Guru</a>
                                                 </li>
-                                                <li><a href="#">Edit Siswa</a>
+                                                <li><a href="#">Laporan Kelas</a>
+                                                </li>
+                                                <li><a href="#">Laporan Nilai</a>
+                                                </li>
+                                                <li><a href="#">Laporan Pelajaran</a>
                                                 </li>
                                             </ul>
                                         </li>
-                                        <li><a data-toggle="collapse" data-target="#democrou" href="#">Courses <span class="admin-project-icon edu-icon edu-down-arrow"></span></a>
+                                        <li><a data-toggle="collapse" data-target="#democrou" href="#">Guru<span class="admin-project-icon edu-icon edu-down-arrow"></span></a>
                                             <ul id="democrou" class="collapse dropdown-header-top">
-                                                <li><a href="#">All Courses</a>
+                                                <li><a href="#">Input Nilai Siswa</a>
                                                 </li>
                                             </ul>
                                         </li>
-                                        <li><a data-toggle="collapse" data-target="#demolibra" href="#">Library <span class="admin-project-icon edu-icon edu-down-arrow"></span></a>
+                                        <li><a data-toggle="collapse" data-target="#demolibra" href="#">Siswa<span class="admin-project-icon edu-icon edu-down-arrow"></span></a>
                                             <ul id="demolibra" class="collapse dropdown-header-top">
-                                                <li><a href="#">Library Asset</a>
-                                                </li>
-                                                <li><a href="#">Add Library Asset</a>
-                                                </li>
-                                                <li><a href="#">Edit Library Asset</a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li><a data-toggle="collapse" data-target="#demodepart" href="#">Departments <span class="admin-project-icon edu-icon edu-down-arrow"></span></a>
-                                            <ul id="demodepart" class="collapse dropdown-header-top">
-                                                <li><a href="#">Departments List</a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li><a data-toggle="collapse" data-target="#demo" href="#">Mailbox <span class="admin-project-icon edu-icon edu-down-arrow"></span></a>
-                                            <ul id="demo" class="collapse dropdown-header-top">
-                                                <li><a href="#">Inbox</a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li><a data-toggle="collapse" data-target="#Miscellaneousmob" href="#">Interface <span class="admin-project-icon edu-icon edu-down-arrow"></span></a>
-                                            <ul id="Miscellaneousmob" class="collapse dropdown-header-top">
-                                                <li><a href="#">Google Map</a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li><a data-toggle="collapse" data-target="#Chartsmob" href="#">Charts <span class="admin-project-icon edu-icon edu-down-arrow"></span></a>
-                                            <ul id="Chartsmob" class="collapse dropdown-header-top">
-                                                <li><a href="#">Bar Charts</a>
-                                                </li>
-                                                
-                                            </ul>
-                                        </li>
-                                        <li><a data-toggle="collapse" data-target="#Tablesmob" href="#">Tables <span class="admin-project-icon edu-icon edu-down-arrow"></span></a>
-                                            <ul id="Tablesmob" class="collapse dropdown-header-top">
-                                                <li><a href="#">Static Table</a>
-                                                </li>
-                                                <li><a href="#">Data Table</a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li><a data-toggle="collapse" data-target="#formsmob" href="#">Forms <span class="admin-project-icon edu-icon edu-down-arrow"></span></a>
-                                            <ul id="formsmob" class="collapse dropdown-header-top">
-                                                <li><a href="#">Basic Form Elements</a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li><a data-toggle="collapse" data-target="#Appviewsmob" href="#">App views <span class="admin-project-icon edu-icon edu-down-arrow"></span></a>
-                                            <ul id="Appviewsmob" class="collapse dropdown-header-top">
-                                                <li><a href="#">Basic Form Elements</a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li><a data-toggle="collapse" data-target="#Pagemob" href="#">Pages <span class="admin-project-icon edu-icon edu-down-arrow"></span></a>
-                                            <ul id="Pagemob" class="collapse dropdown-header-top">
-                                                <li><a href="#">Login</a>
+                                                <li><a href="#">Nilai Raport</a>
                                                 </li>
                                             </ul>
                                         </li>
@@ -302,22 +259,9 @@
                 </div>
             </div>
             <!-- Mobile Menu end -->
-            
-            
         </div>
       @yield('body')
-      <!--footer-->
-        <div class="footer-copyright-area">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="footer-copy-right">
-                            <p>Copyright © 2020. All rights reserved. SMK Insan Mulya Kibin, Kabupaten Serang</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+      @yield('footer')
     </div>
     <!-- jquery
         ============================================ -->

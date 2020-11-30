@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('Data Admin')
+@section('Data Guru')
 @endsection
 @section('body')
 <div class="breadcome-area">
@@ -10,7 +10,7 @@
                     <div class="row">
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                             <div class="breadcome-heading">
-                                <form role="search" class="sr-input-func" method="GET" action="{{url('/admin/search')}}">
+                                <form role="search" class="sr-input-func" method="GET" action="{{url('/guru/search')}}">
                                     <input name="cari" type="text" placeholder="Search..." value="{{old('cari')}}" class="search-int form-control">
                                 </form>
                             </div>
@@ -18,7 +18,7 @@
 
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                             <ul class="breadcome-menu">
-                                <li><a href="{{url('/admin')}}">Management Admin</a> <span class="bread-slash"></span>
+                                <li><a href="{{url('/guru')}}">Management Guru</a> <span class="bread-slash"></span>
                                 </li>
                                 {{-- <li><span class="bread-blod">@yield()</span>
                                 </li> --}}
@@ -42,7 +42,7 @@
                 <div class="sparkline13-list">
                     <div class="sparkline13-hd">
                         <div class="main-sparkline13-hd">
-                            <h1><span class="table-project-n">Data</span> Admin</h1>
+                            <h1><span class="table-project-n">Data</span> guru</h1>
                         </div>
                     </div>
                     <div class="sparkline13-graph">
@@ -52,7 +52,7 @@
                               <tr>
                                 <th class=" text-center" scope="col">No</th>
                                 <th class=" text-center" scope="col">Nip</th>
-                                <th class=" text-center" scope="col">Nama</th>
+                                <th class=" text-center" scope="col">Nama Guru</th>
                                 <th class=" text-center" scope="col">Jenis Kelamin</th>
                                 <th class=" text-center" scope="col">Telepon</th>
                                 <th class=" text-center" scope="col">Photo</th>
@@ -61,20 +61,20 @@
                               </tr>
                             </thead>
                             <tbody>
-                                @foreach ($Admin as $key => $admin)
+                                @foreach ($Guru as $key => $guru)
                               <tr>
-                                <th class=" text-center" scope="row">{{ $Admin->firstItem() + $key }}</th>
-                                <td scope="row">{{ $admin->nip }}</td>
-                                <td scope="row">{{ $admin->nama }}</td>
-                                <td scope="row">{{ $admin->jenis_kelamin }}</td>
-                                <td scope="row">{{ $admin->telepon }}</td>
-                                <td class=" text-center" scope="row"><img width="40px" height="60px" src="{{ url('/storage/avatar admin/'.$admin->photo) }}"></td>
-                                <td scope="row">{{ $admin->email }}</td>
+                                <th class=" text-center" scope="row">{{ $Guru->firstItem() + $key }}</th>
+                                <td scope="row">{{ $guru->nip }}</td>
+                                <td scope="row">{{ $guru->nama }}</td>
+                                <td scope="row">{{ $guru->jenis_kelamin }}</td>
+                                <td scope="row">{{ $guru->telepon }}</td>
+                                <td class=" text-center" scope="row"><img width="40px" height="60px" src="{{ url('/storage/avatar guru/'.$guru->photo) }}"></td>
+                                <td scope="row">{{ $guru->email }}</td>
                                 <td scope="row" class=" text-center">
-                                  <a href="{{url('/editadmin/'.$admin->id)}}"><button type="button" class="btn btn-warning" data-toggle="modal" data-target="#editModal"><i class="fa fa-edit">
+                                  <a href="{{url('/editguru/'.$guru->id)}}"><button type="button" class="btn btn-warning" data-toggle="modal" data-target="#editModal"><i class="fa fa-edit">
                                     Edit
                                   </i></button></a>
-                                    <form action="{{url('/deleteadmin/'.$admin->id)}}" method="POST" class="d-inline" onsubmit="return confirm('Apakah yakin data ini ingin di hapus?')">
+                                    <form action="{{url('/deleteguru/'.$guru->id)}}" method="POST" class="d-inline" onsubmit="return confirm('Apakah yakin data ini ingin di hapus?')">
                                         @method('delete')
                                         @csrf
                                         <button class="btn btn-danger btn-sm">
@@ -93,15 +93,15 @@
         </div>
         <div class="fa-pull-left">
             Menampilkan
-            {{$Admin->firstItem()}}
+            {{$Guru->firstItem()}}
             sampai
-            {{$Admin->lastItem()}}
+            {{$Guru->lastItem()}}
             dari
-            {{$Admin->total()}}
+            {{$Guru->total()}}
             total data
           </div>
           <div class="fa-pull-right">
-            {{$Admin->links()}}
+            {{$Guru->links()}}
           </div>
     </div>
 </div>
@@ -111,20 +111,20 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Tambah Data Admin</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Tambah Data guru</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        <form action="{{ url('/tambahadmin')}}" method="POST" enctype="multipart/form-data">
+        <form action="{{ url('/tambahguru')}}" method="POST" enctype="multipart/form-data">
           @csrf
           <div class="form-group">
               <label>NIP</label>
               <input type="text" name="nip" class="form-control" autofocus required maxlength="15">
           </div>
           <div class="form-group">
-              <label>Nama</label>
+              <label>Nama Guru</label>
               <input type="text" name="nama" class="form-control" autofocus required maxlength="30">
           </div>
           <div class="form-group">

@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Admin;
-
+use App\Models\Guru;
+use App\Models\Siswa;
 class HomeController extends Controller
 {
     /**
@@ -27,6 +28,11 @@ class HomeController extends Controller
     {
         User::all();
         $admin=Admin::paginate();
-        return view('home',['Admin'=>$admin]);
+        $guru=Guru::paginate();
+        $siswa=Siswa::paginate();
+        return view('home',[
+            'Admin'=>$admin,
+            'Guru'=>$guru,
+            'Siswa'=>$siswa]);
     }
 }
