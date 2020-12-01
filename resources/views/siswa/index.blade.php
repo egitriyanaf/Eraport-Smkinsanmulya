@@ -56,6 +56,7 @@
                                 <th class=" text-center" scope="col">Jenis Kelamin</th>
                                 <th class=" text-center" scope="col">Telepon</th>
                                 <th class=" text-center" scope="col">Photo</th>
+                                <th class=" text-center" scope="col">Tanggal Lahir</th>
                                 <th class=" text-center" scope="col">Email</th>
                                 <th class=" text-center" scope="col">Aksi</th>
                               </tr>
@@ -69,6 +70,7 @@
                                 <td scope="row">{{ $siswa->jenis_kelamin }}</td>
                                 <td scope="row">{{ $siswa->telepon }}</td>
                                 <td class=" text-center" scope="row"><img width="40px" height="60px" src="{{ url('/storage/avatar siswa/'.$siswa->photo) }}"></td>
+                                <td scope="row">{{ $siswa->tanggal_lahir }}</td>
                                 <td scope="row">{{ $siswa->email }}</td>
                                 <td scope="row" class=" text-center">
                                   <a href="{{url('/editsiswa/'.$siswa->id)}}"><button type="button" class="btn btn-warning" data-toggle="modal" data-target="#editModal"><i class="fa fa-edit">
@@ -142,6 +144,10 @@
                 <label for="uploadphoto">Upload Photo</label>
                 <input type="file" name="photo" class="form-control-file" id="uploadphoto">
               </div>
+              <div class="form-group">
+                <label>Tanggal Lahir</label>
+                <input type="date" name="tanggallahir" id="tanggallahir" class="form-control" autofocus required>
+            </div>
           <div class="form-group">
               <label>Email</label>
               <input type="email" name="email" id="email" class="form-control" maxlength="25" autofocus required>

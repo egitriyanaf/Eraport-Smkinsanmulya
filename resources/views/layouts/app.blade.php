@@ -172,7 +172,7 @@
                                                             <i class="fa fa-angle-down edu-icon edu-down-arrow"></i>
                                                         </a>
                                                     <ul role="menu" class="dropdown-header-top author-log dropdown-menu animated zoomIn">
-                                                        <li><a href="#"><span class="edu-icon edu-settings author-log-ic"></span>Setting Profil</a>
+                                                        <li><a href="#"><span class="edu-icon edu-settings author-log-ic"></span>Ubah Password</a>
                                                         </li>
 
                                                         <li>

@@ -39,6 +39,7 @@ class SiswaController extends Controller
                 'jenis_kelamin' => $request->jeniskelamin,
                 'telepon' => $request->telepon,
                 'photo' => $name,
+                'tanggal_lahir'=>$request->tanggallahir,
                 'email' => $request->email,
                 'password' => Hash::make($request['password'])
                 ]);
@@ -49,6 +50,7 @@ class SiswaController extends Controller
                     'nama' => $request->nama,
                     'jenis_kelamin' => $request->jeniskelamin,
                     'telepon' => $request->telepon,
+                    'tanggal_lahir'=>$request->tanggallahir,
                     'email' => $request->email,
                     'password' => Hash::make($request['password'])
                     ]);
@@ -79,6 +81,7 @@ class SiswaController extends Controller
                     'jenis_kelamin' => $request->jeniskelamin,
                     'telepon' => $request->telepon,
                     'photo' => $name,
+                    'tanggal_lahir'=>$request->tanggallahir,
                     'email' => $request->email,
                     'password' => Hash::make($request['password'])
             ]);
@@ -88,6 +91,7 @@ class SiswaController extends Controller
                 'nama' => $request->nama,
                 'jenis_kelamin' => $request->jeniskelamin,
                 'telepon' => $request->telepon,
+                'tanggal_lahir'=>$request->tanggallahir,
                 'email' => $request->email,
                 'password' => Hash::make($request['password'])
         ]);

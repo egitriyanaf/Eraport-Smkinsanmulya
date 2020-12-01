@@ -73,6 +73,10 @@
           <label for="uploadphoto">Upload Photo</label>
           <input type="file" name="photo" class="form-control-file" id="uploadphoto">{{$Siswa->photo}} 
         </div>
+        <div class="form-group">
+            <label>Tanggal Lahir</label>
+            <input type="date" name="tanggallahir" id="tanggallahir" class="form-control" value="{{$Siswa->tanggal_lahir}}" autofocus required>
+        </div>
     <div class="form-group">
         <label>Email</label>
         <input type="email" name="email" id="email" class="form-control"  value="{{$Siswa->email}}" autofocus required>
