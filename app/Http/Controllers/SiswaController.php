@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\Siswa;
 
@@ -26,13 +27,23 @@ class SiswaController extends Controller
 
     public function tambahsiswa(Request $request)
     {
+        $latest_guru=DB::table('guru')->latest('created_at')->first();
+        if ($latest_guru) {
+        $latest_id_guru=$latest_guru->id;
+        $temp_id=$latest_id_guru+1;   
+        }
+        else {
+            $temp_id=1;
+        }
         if ($request->file('photo')) {
             $photo = $request->file('photo');
-        $name= $request->file('photo')->getClientOriginalName();
-        $extension = $request->file('photo')->extension();
-        $path = $photo->storeAs(
-            'avatar siswa', $name, 'public'
-        );
+            $file= $request->file('photo')->getClientOriginalName();
+            $filename= pathinfo($file, PATHINFO_FILENAME);
+            $fileextension= pathinfo($file, PATHINFO_EXTENSION);
+            $photoname = 'foto-guru'.'_'.$temp_id.'.'.$fileextension;
+            $path = $photo->storeAs(
+                'avatar guru', $photoname, 'public'
+            ); 
         Siswa::create([
                 'nip' => $request->nip,
                 'nama' => $request->nama,
@@ -67,20 +78,23 @@ class SiswaController extends Controller
     public function updatesiswa(Request $request, $id)
     {   
         $siswa=siswa::FindOrFail($id);
+        $idphoto=$siswa->id;
         $lokasifile = storage_path().'/app/public/avatar siswa/'.$siswa->photo;
         if ($request->File('photo')) {
             $photo = $request->file('photo');
-            $name= $request->file('photo')->getClientOriginalName();
-            $extension = $request->file('photo')->extension();
+            $file= $request->file('photo')->getClientOriginalName();
+            $filename= pathinfo($file, PATHINFO_FILENAME);
+            $fileextension= pathinfo($file, PATHINFO_EXTENSION);
+            $photoname = 'foto-siswa'.'_'.$idphoto.'.'.$fileextension;
             $path = $photo->storeAs(
-                'avatar siswa', $name, 'public'
+                'avatar siswa', $photoname, 'public'
             ); 
             $siswa->update([
                     'nip' => $request->nip,
                     'nama' => $request->nama,
                     'jenis_kelamin' => $request->jeniskelamin,
                     'telepon' => $request->telepon,
-                    'photo' => $name,
+                    'photo' => $photoname,
                     'tanggal_lahir'=>$request->tanggallahir,
                     'email' => $request->email,
                     'password' => Hash::make($request['password'])
@@ -101,7 +115,14 @@ class SiswaController extends Controller
 
     public function deletesiswa($id)
     {   
-        Siswa::find($id)->delete();       
+        $siswa=Siswa::find($id);
+        $lokasifile = storage_path().'/app/public/avatar siswa/'.$siswa->photo;
+        if ($siswa->exists('photo')) {
+            if (file_exists($lokasifile)) {
+                unlink($lokasifile);
+             }
+             }
+             $siswa->delete();     
         return redirect('/siswa')->with('status', 'data berhasil dihapus!');
     }
 }

@@ -3,13 +3,14 @@
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\Admin;
 
 class AdminController extends Controller
 {
     public function index()
-    {
+    { 
     $admin=Admin::paginate(5);
     $admin->useBootstrap();    
     return view('admin/index',['Admin'=>$admin]);
@@ -24,20 +25,30 @@ class AdminController extends Controller
     }
 
     public function tambahadmin(Request $request)
-    {
+    {   
+        $latest_admin=DB::table('Admins')->latest('created_at')->first();
+        if ($latest_admin) {
+        $latest_id_admin=$latest_admin->id;
+        $temp_id=$latest_id_admin+1;   
+        }
+        else {
+            $temp_id=1;
+        }
         if ($request->file('photo')) {
             $photo = $request->file('photo');
-        $name= $request->file('photo')->getClientOriginalName();
-        $extension = $request->file('photo')->extension();
-        $path = $photo->storeAs(
-            'avatar admin', $name, 'public'
-        );
+            $file= $request->file('photo')->getClientOriginalName();
+            $filename= pathinfo($file, PATHINFO_FILENAME);
+            $fileextension= pathinfo($file, PATHINFO_EXTENSION);
+            $photoname = 'foto-admin'.'_'.$temp_id.'.'.$fileextension;
+            $path = $photo->storeAs(
+                'avatar admin', $photoname, 'public'
+            ); 
         Admin::create([
                 'nip' => $request->nip,
                 'nama' => $request->nama,
                 'jenis_kelamin' => $request->jeniskelamin,
                 'telepon' => $request->telepon,
-                'photo' => $name,
+                'photo' => $photoname,
                 'email' => $request->email,
                 'password' => Hash::make($request['password'])
                 ]);
@@ -66,20 +77,23 @@ class AdminController extends Controller
     public function updateadmin(Request $request, $id)
     {   
         $admin=Admin::FindOrFail($id);
+        $idphoto=$admin->id;
         $lokasifile = storage_path().'/app/public/avatar admin/'.$admin->photo;
         if ($request->File('photo')) {
             $photo = $request->file('photo');
-            $name= $request->file('photo')->getClientOriginalName();
-            $extension = $request->file('photo')->extension();
+            $file= $request->file('photo')->getClientOriginalName();
+            $filename= pathinfo($file, PATHINFO_FILENAME);
+            $fileextension= pathinfo($file, PATHINFO_EXTENSION);
+            $photoname = 'foto-admin'.'_'.$idphoto.'.'.$fileextension;
             $path = $photo->storeAs(
-                'avatar admin', $name, 'public'
-            ); 
+                'avatar admin', $photoname, 'public'
+            );
             $admin->update([
                     'nip' => $request->nip,
                     'nama' => $request->nama,
                     'jenis_kelamin' => $request->jeniskelamin,
                     'telepon' => $request->telepon,
-                    'photo' => $name,
+                    'photo' => $photoname,
                     'email' => $request->email,
                     'password' => Hash::make($request['password'])
             ]);
@@ -101,7 +115,9 @@ class AdminController extends Controller
         $admin=Admin::find($id);
         $lokasifile = storage_path().'/app/public/avatar admin/'.$admin->photo;
         if ($admin->exists('photo')) {
-            unlink($lokasifile);
+            if (file_exists($lokasifile)) {
+                unlink($lokasifile);
+             }
              }
              $admin->delete();
         return redirect('/admin')->with('status', 'data berhasil dihapus!');
