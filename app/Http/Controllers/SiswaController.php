@@ -45,23 +45,31 @@ class SiswaController extends Controller
                 'avatar guru', $photoname, 'public'
             ); 
         Siswa::create([
-                'nip' => $request->nip,
+                'nis' => $request->nis,
                 'nama' => $request->nama,
                 'jenis_kelamin' => $request->jeniskelamin,
                 'telepon' => $request->telepon,
-                'photo' => $name,
+                'photo' => $photoname,
                 'tanggal_lahir'=>$request->tanggallahir,
+                'tempat_lahir'=>$request->tempatlahir,
+                'agama'=>$request->agama,
+                'alamat'=>$request->alamat,
+                'tahun_angkatan'=>$request->tahunangkatan,
                 'email' => $request->email,
                 'password' => Hash::make($request['password'])
                 ]);
             }
             else {
                 Siswa::create([
-                    'nip' => $request->nip,
+                    'nis' => $request->nis,
                     'nama' => $request->nama,
                     'jenis_kelamin' => $request->jeniskelamin,
                     'telepon' => $request->telepon,
                     'tanggal_lahir'=>$request->tanggallahir,
+                    'tempat_lahir'=>$request->tempatlahir,
+                    'agama'=>$request->agama,
+                    'alamat'=>$request->alamat,
+                    'tahun_angkatan'=>$request->tahunangkatan,
                     'email' => $request->email,
                     'password' => Hash::make($request['password'])
                     ]);
@@ -90,22 +98,30 @@ class SiswaController extends Controller
                 'avatar siswa', $photoname, 'public'
             ); 
             $siswa->update([
-                    'nip' => $request->nip,
+                    'nis' => $request->nis,
                     'nama' => $request->nama,
                     'jenis_kelamin' => $request->jeniskelamin,
                     'telepon' => $request->telepon,
                     'photo' => $photoname,
                     'tanggal_lahir'=>$request->tanggallahir,
+                    'tempat_lahir'=>$request->tempatlahir,
+                    'agama'=>$request->agama,
+                    'alamat'=>$request->alamat,
+                    'tahun_angkatan'=>$request->tahunangkatan,
                     'email' => $request->email,
                     'password' => Hash::make($request['password'])
             ]);
             } 
             $siswa->update([
-                'nip' => $request->nip,
+                'nis' => $request->nis,
                 'nama' => $request->nama,
                 'jenis_kelamin' => $request->jeniskelamin,
                 'telepon' => $request->telepon,
                 'tanggal_lahir'=>$request->tanggallahir,
+                'tempat_lahir'=>$request->tempatlahir,
+                'agama'=>$request->agama,
+                'alamat'=>$request->alamat,
+                'tahun_angkatan'=>$request->tahunangkatan,
                 'email' => $request->email,
                 'password' => Hash::make($request['password'])
         ]);

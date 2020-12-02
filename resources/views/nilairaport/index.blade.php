@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('title')
-Management Guru
+Nilai Raport
 @endsection
 @section('body')
 <div class="breadcome-area">
@@ -11,7 +11,7 @@ Management Guru
                     <div class="row">
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                             <div class="breadcome-heading">
-                                <form role="search" class="sr-input-func" method="GET" action="{{url('/guru/search')}}">
+                                <form role="search" class="sr-input-func" method="GET" action="{{url('/nilairaport/search')}}">
                                     <input name="cari" type="text" placeholder="Search..." value="{{old('cari')}}" class="search-int form-control">
                                 </form>
                             </div>
@@ -19,7 +19,7 @@ Management Guru
 
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                             <ul class="breadcome-menu">
-                                <li><a href="{{url('/guru')}}">Management Guru</a> <span class="bread-slash"></span>
+                                <li><a href="{{url('/nilairaport')}}">Nilai Raport</a> <span class="bread-slash"></span>
                                 </li>
                                 {{-- <li><span class="bread-blod">@yield()</span>
                                 </li> --}}
@@ -30,7 +30,6 @@ Management Guru
             </div>
         </div>
         
-
          @include('layouts/sessionsuccess') 
 <div class="data-table-area mg-b-15">
     <div class="container-fluid">
@@ -43,7 +42,7 @@ Management Guru
                 <div class="sparkline13-list">
                     <div class="sparkline13-hd">
                         <div class="main-sparkline13-hd">
-                            <h1><span class="table-project-n">Data</span> guru</h1>
+                            <h1><span class="table-project-n">Data</span> Nilai Raport</h1>
                         </div>
                     </div>
                     <div class="sparkline13-graph">
@@ -52,30 +51,36 @@ Management Guru
                             <thead>
                               <tr>
                                 <th class=" text-center" scope="col">No</th>
-                                <th class=" text-center" scope="col">Nip</th>
-                                <th class=" text-center" scope="col">Nama Guru</th>
-                                <th class=" text-center" scope="col">Jenis Kelamin</th>
-                                <th class=" text-center" scope="col">Telepon</th>
-                                <th class=" text-center" scope="col">Photo</th>
-                                <th class=" text-center" scope="col">Email</th>
+                                <th class=" text-center" scope="col">Mata Pelajaran</th>
+                                <th class=" text-center" scope="col">Semester</th>
+                                <th class=" text-center" scope="col">Tugas 1</th>
+                                <th class=" text-center" scope="col">Tugas 2</th>
+                                <th class=" text-center" scope="col">Tugas 3</th>
+                                <th class=" text-center" scope="col">UTS</th>
+                                <th class=" text-center" scope="col">UAS</th>
+                                <th class=" text-center" scope="col">Nilai Rata-rata</th>
+                                <th class=" text-center" scope="col">Grade</th>
                                 <th class=" text-center" scope="col">Aksi</th>
                               </tr>
                             </thead>
                             <tbody>
-                                @foreach ($Guru as $key => $guru)
+                                
                               <tr>
-                                <th class=" text-center" scope="row">{{ $Guru->firstItem() + $key }}</th>
-                                <td scope="row">{{ $guru->nip }}</td>
-                                <td scope="row">{{ $guru->nama }}</td>
-                                <td scope="row">{{ $guru->jenis_kelamin }}</td>
-                                <td scope="row">{{ $guru->telepon }}</td>
-                                <td class=" text-center" scope="row"><img width="40px" height="60px" src="{{ url('/storage/avatar guru/'.$guru->photo) }}"></td>
-                                <td scope="row">{{ $guru->email }}</td>
+                                <th class=" text-center" scope="row">belom</th>
+                                <td scope="row" class="text-center">belom</td>
+                                <td scope="row" class="text-center">belom</td>
+                                <td scope="row" class="text-center">belom</td>
+                                <td scope="row" class="text-center">belom</td>
+                                <td scope="row" class="text-center">belom</td>
+                                <td scope="row" class="text-center">belom</td>
+                                <td scope="row" class="text-center">belom</td>
+                                <td scope="row" class="text-center">belom</td>
+                                <td scope="row" class="text-center">belom</td>
                                 <td scope="row" class=" text-center">
-                                  <a href="{{url('/editguru/'.$guru->id)}}"><button type="button" class="btn btn-warning" data-toggle="modal" data-target="#editModal"><i class="fa fa-edit">
+                                  <a href="#"><button type="button" class="btn btn-warning" data-toggle="modal" data-target="#editModal"><i class="fa fa-edit">
                                     Edit
                                   </i></button></a>
-                                    <form action="{{url('/deleteguru/'.$guru->id)}}" method="POST" class="d-inline" onsubmit="return confirm('Apakah yakin data ini ingin di hapus?')">
+                                    <form action="#" method="POST" class="d-inline" onsubmit="return confirm('Apakah yakin data ini ingin di hapus?')">
                                         @method('delete')
                                         @csrf
                                         <button class="btn btn-danger btn-sm">
@@ -85,7 +90,7 @@ Management Guru
                                 </td>
                               </tr>
                             </tbody>
-                            @endforeach
+                            {{--  @endforeach  --}}
                         </table>
                     </div>
                     </div>
@@ -94,70 +99,47 @@ Management Guru
         </div>
         <div class="fa-pull-left">
             Menampilkan
-            {{$Guru->firstItem()}}
+            {{--  {{$Kelassiswa->firstItem()}}  --}} belom
             sampai
-            {{$Guru->lastItem()}}
+            {{--  {{$Kelassiswa->lastItem()}}  --}} belom
             dari
-            {{$Guru->total()}}
+            {{--  {{$Kelassiswa->total()}}  --}} belom
             total data
           </div>
           <div class="fa-pull-right">
-            {{$Guru->links()}}
+            {{--  {{$Kelassiswa->links()}}  --}} belom
           </div>
     </div>
 </div>
 
-<!-- Modal Tambah -->
+{{--  <!-- Modal Tambah -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Tambah Data guru</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Tambah Data Kelas</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        <form action="{{ url('/tambahguru')}}" method="POST" enctype="multipart/form-data">
+        <form action="#" method="POST" enctype="multipart/form-data">
           @csrf
           <div class="form-group">
-            <label>Id Guru</label>
-            <input type="text" name="Id" class="form-control" autofocus value="{{$guru->id+1}}" readonly>
+            <label>Kode Data Kelas</label>
+            <input type="text" name="kodekelas" class="form-control" autofocus readonly>
         </div>
           <div class="form-group">
-              <label>NIP</label>
-              <input type="text" name="nip" class="form-control" autofocus required maxlength="15">
+              <label>Nama Kelas</label>
+              <input type="text" name="Nama Kelas" class="form-control" autofocus required maxlength="30">
           </div>
           <div class="form-group">
-              <label>Nama Guru</label>
-              <input type="text" name="nama" class="form-control" autofocus required maxlength="30">
+              <label>Jurusan</label>
+              <input type="text" name="Jurusan" class="form-control" autofocus required maxlength="30">
           </div>
           <div class="form-group">
-              <label>Jenis Kelamin</label>
-              <select class="form-control" name="jeniskelamin" id="jeniskelamin">
-                  <option value="Laki-laki">Laki-laki</option>
-                  <option value="Perempuan">Perempuan</option>
-              </select>
-          </div>
-          <div class="form-group">
-              <label>Telepon</label>
-              <input type="text" name="telepon" class="form-control" autofocus required maxlength="16">
-          </div>
-          <div class="form-group">
-            <label>Alamat</label>
-            <input type="text" name="alamat" class="form-control" autofocus required>
-        </div>
-              <div class="form-group">
-                <label for="uploadphoto">Upload Photo</label>
-                <input type="file" name="photo" class="form-control-file" id="uploadphoto">
-              </div>
-          <div class="form-group">
-              <label>Email</label>
-              <input type="email" name="email" id="email" class="form-control" maxlength="25" autofocus required>
-          </div>
-          <div class="form-group">
-            <label>Password</label>
-            <input type="password" name="password" id="password" class="form-control" maxlength="25" autofocus required>
+            <label>Nama Siswa</label>
+            <input type="text" name="namakelas" class="form-control" autofocus required>
         </div>
       </div>
       <div class="modal-footer">
@@ -167,7 +149,7 @@ Management Guru
     </form>
     </div>
   </div>
-</div>
+</div>  --}}
 @endsection
 
 @section('footer')

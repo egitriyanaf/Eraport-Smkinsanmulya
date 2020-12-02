@@ -1,5 +1,6 @@
 @extends('layouts.app')
-@section('edit siswa')
+@section('title')
+Edit Siswa
 @endsection
 @section('body')
 <div class="breadcome-area">
@@ -46,11 +47,11 @@
     @csrf
     <div class="form-group">
         <label>Id siswa</label>
-        <input type="text" name="nip" class="form-control" value="{{$Siswa->id}}" readonly>
+        <input type="text" name="id" class="form-control" value="{{$Siswa->id}}" readonly>
     </div>
     <div class="form-group">
-        <label>NIP</label>
-        <input type="text" name="nip" class="form-control" value="{{$Siswa->nip}}" autofocus required maxlength="10">
+        <label>Nomor Induk Siswa</label>
+        <input type="text" name="nis" class="form-control" value="{{$Siswa->nis}}" autofocus required maxlength="10">
     </div>
     <div class="form-group">
         <label>Nama</label>
@@ -76,6 +77,22 @@
         <div class="form-group">
             <label>Tanggal Lahir</label>
             <input type="date" name="tanggallahir" id="tanggallahir" class="form-control" value="{{$Siswa->tanggal_lahir}}" autofocus required>
+        </div>
+        <div class="form-group">
+            <label>Tempat Lahir</label>
+            <input type="text" name="tempatlahir" id="tempatlahir" class="form-control" value="{{$Siswa->tempat_lahir}}" maxlength="30" autofocus required>
+        </div>
+          <div class="form-group">
+            <label>Agama</label>
+            <input type="text" name="agama" id="agama" class="form-control" value="{{$Siswa->agama}}" maxlength="20" autofocus required>
+        </div>
+          <div class="form-group">
+            <label>Alamat</label>
+            <input type="text" name="alamat" id="alamat" class="form-control" value="{{$Siswa->alamat}}" autofocus required>
+        </div>
+          <div class="form-group">
+            <label>Tahun Angkatan</label>
+            <input type="text" name="tahunangkatan" id="tahunangkatan" class="form-control" value="{{$Siswa->tahun_angkatan}}" maxlength="30" autofocus required>
         </div>
     <div class="form-group">
         <label>Email</label>

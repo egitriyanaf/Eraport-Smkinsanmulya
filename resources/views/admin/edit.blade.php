@@ -46,7 +46,7 @@
     @csrf
     <div class="form-group">
         <label>Id Admin</label>
-        <input type="text" name="nip" class="form-control" value="{{$Admin->id}}" readonly>
+        <input type="text" name="id" class="form-control" value="{{$Admin->id}}" readonly>
     </div>
     <div class="form-group">
         <label>NIP</label>

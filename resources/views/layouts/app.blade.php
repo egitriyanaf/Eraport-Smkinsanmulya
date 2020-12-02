@@ -90,34 +90,34 @@
                         <li>
                             <a class="has-arrow" href="#" aria-expanded="false"><span class="educate-icon educate-course icon-wrap"></span> <span class="mini-click-non">Data Akademik</span></a>
                             <ul class="submenu-angle" aria-expanded="false">
-                                <li><a title="Mata Pelajaran" href="#"><span class="mini-sub-pro">Mata Pelajaran</span></a></li>
-                                <li><a title="Kelas" href="#"><span class="mini-sub-pro">Kelas</span></a></li>
-                                <li><a title="Kelas Siswa" href="#"><span class="mini-sub-pro">Kelas Siswa</span></a></li>
-                                <li><a title="Nilai" href="#"><span class="mini-sub-pro">Nilai</span></a></li>
+                                <li><a title="Mata Pelajaran" href="{{url('/matapelajaran')}}"><span class="mini-sub-pro">Mata Pelajaran</span></a></li>
+                                <li><a title="Kelas" href="{{url('/kelas')}}"><span class="mini-sub-pro">Kelas</span></a></li>
+                                <li><a title="Kelas Siswa" href="{{url('/kelassiswa')}}"><span class="mini-sub-pro">Kelas Siswa</span></a></li>
+                                <li><a title="Nilai" href="{{url('/nilai')}}"><span class="mini-sub-pro">Nilai</span></a></li>
                             </ul>
                         </li>
                         <li>
                             <a class="has-arrow" href="#" aria-expanded="false"><span class="educate-icon educate-data-table icon-wrap"></span> <span class="mini-click-non">Cetak Laporan</span></a>
                             <ul class="submenu-angle" aria-expanded="false">
-                                <li><a title="Laporan Siswa" href="#"><span class="mini-sub-pro">Laporan Siswa</span></a></li>
-                                <li><a title="Laporan Guru" href="#"><span class="mini-sub-pro">Laporan Guru</span></a></li>
-                                <li><a title="Laporan Kelas" href="#"><span class="mini-sub-pro">Laporan Kelas</span></a></li>
-                                <li><a title="Laporan Nilai" href="#"><span class="mini-sub-pro">Laporan Nilai</span></a></li>
-                                <li><a title="Laporan Pelajaran" href="#"><span class="mini-sub-pro">Laporan Pelajaran</span></a></li>
+                                <li><a title="Laporan Siswa" href="{{url('/laporansiswa')}}"><span class="mini-sub-pro">Laporan Siswa</span></a></li>
+                                <li><a title="Laporan Guru" href="{{url('/laporanguru')}}"><span class="mini-sub-pro">Laporan Guru</span></a></li>
+                                <li><a title="Laporan Kelas" href="{{url('/laporankelas')}}"><span class="mini-sub-pro">Laporan Kelas</span></a></li>
+                                <li><a title="Laporan Nilai" href="{{url('/laporannilai')}}"><span class="mini-sub-pro">Laporan Nilai</span></a></li>
+                                <li><a title="Laporan Pelajaran" href="{{url('/laporanpelajaran')}}"><span class="mini-sub-pro">Laporan Pelajaran</span></a></li>
                             </ul>
                         </li>
                         //navigasi guru
                         <li>
                             <a class="has-arrow" href="#" aria-expanded="false"><span class="educate-icon educate-professor icon-wrap"></span><span class="mini-click-non">Guru</span></a>
                             <ul class="submenu-angle" aria-expanded="false">
-                                <li><a title="Input Nilai Siswa" href="#"><span class="mini-sub-pro">Input Nilai Siswa</span></a></li>
+                                <li><a title="Input Nilai Siswa" href="{{url('/inputnilaisiswa')}}"><span class="mini-sub-pro">Input Nilai Siswa</span></a></li>
                             </ul>
                         </li>
                         //navigasi siswa
                         <li>
                             <a class="has-arrow" href="#" aria-expanded="false"><span class="educate-icon educate-student icon-wrap"></span> <span class="mini-click-non">Siswa</span></a>
                             <ul class="submenu-angle" aria-expanded="false">
-                                <li><a title="Nilai Raport" href="#"><span class="mini-sub-pro">Nilai Raport</span></a></li>
+                                <li><a title="Nilai Raport" href="{{url('/nilairaport')}}"><span class="mini-sub-pro">Nilai Raport</span></a></li>
                             </ul>
                         </li>
                     </ul>
@@ -215,39 +215,39 @@
                                         </li>
                                         <li><a data-toggle="collapse" data-target="#demoevent" href="#">Data Akademik<span class="admin-project-icon edu-icon edu-down-arrow"></span></a>
                                             <ul id="demoevent" class="collapse dropdown-header-top">
-                                                <li><a href="#">Mata Pelajaran</a>
+                                                <li><a href="{{url('/matapelajaran')}}">Mata Pelajaran</a>
                                                 </li>
-                                                <li><a href="#">Kelas</a>
+                                                <li><a href="{{url('/kelas')}}">Kelas</a>
                                                 </li>
-                                                <li><a href="#">Kelas Siswa</a>
+                                                <li><a href="{{url('/kelassiswa')}}">Kelas Siswa</a>
                                                 </li>
-                                                <li><a href="#">Nilai</a>
+                                                <li><a href="{{url('/nilai')}}">Nilai</a>
                                                 </li>
                                             </ul>
                                         </li>
                                         <li><a data-toggle="collapse" data-target="#demopro" href="#">Cetak Laporan<span class="admin-project-icon edu-icon edu-down-arrow"></span></a>
                                             <ul id="demopro" class="collapse dropdown-header-top">
-                                                <li><a href="#">Laporan Siswa</a>
+                                                <li><a href="{{url('/laporansiswa')}}">Laporan Siswa</a>
                                                 </li>
-                                                <li><a href="#">Laporan Guru</a>
+                                                <li><a href="{{url('/laporanguru')}}">Laporan Guru</a>
                                                 </li>
-                                                <li><a href="#">Laporan Kelas</a>
+                                                <li><a href="{{url('/laporankelas')}}">Laporan Kelas</a>
                                                 </li>
-                                                <li><a href="#">Laporan Nilai</a>
+                                                <li><a href="{{url('/laporannilai')}}">Laporan Nilai</a>
                                                 </li>
-                                                <li><a href="#">Laporan Pelajaran</a>
+                                                <li><a href="{{url('/laporanpelajaran')}}">Laporan Pelajaran</a>
                                                 </li>
                                             </ul>
                                         </li>
                                         <li><a data-toggle="collapse" data-target="#democrou" href="#">Guru<span class="admin-project-icon edu-icon edu-down-arrow"></span></a>
                                             <ul id="democrou" class="collapse dropdown-header-top">
-                                                <li><a href="#">Input Nilai Siswa</a>
+                                                <li><a href="{{url('/inputnilaisiswa')}}">Input Nilai Siswa</a>
                                                 </li>
                                             </ul>
                                         </li>
                                         <li><a data-toggle="collapse" data-target="#demolibra" href="#">Siswa<span class="admin-project-icon edu-icon edu-down-arrow"></span></a>
                                             <ul id="demolibra" class="collapse dropdown-header-top">
-                                                <li><a href="#">Nilai Raport</a>
+                                                <li><a href="{{url('/nilairaport')}}">Nilai Raport</a>
                                                 </li>
                                             </ul>
                                         </li>

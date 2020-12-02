@@ -1,5 +1,6 @@
 @extends('layouts.app')
-@section('Data Admin')
+@section('title')
+Management Admin
 @endsection
 @section('body')
 <div class="breadcome-area">
@@ -119,6 +120,10 @@
       <div class="modal-body">
         <form action="{{ url('/tambahadmin')}}" method="POST" enctype="multipart/form-data">
           @csrf
+          <div class="form-group">
+            <label>Id Admin</label>
+            <input type="text" name="Id" class="form-control" autofocus value="{{$admin->id+1}}" readonly>
+        </div>
           <div class="form-group">
               <label>NIP</label>
               <input type="text" name="nip" class="form-control" autofocus required maxlength="15">

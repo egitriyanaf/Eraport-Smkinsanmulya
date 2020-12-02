@@ -1,5 +1,6 @@
 @extends('layouts.app')
-@section('Data Siswa')
+@section('title')
+Management Siswa
 @endsection
 @section('body')
 <div class="breadcome-area">
@@ -51,8 +52,9 @@
                             <thead>
                               <tr>
                                 <th class=" text-center" scope="col">No</th>
-                                <th class=" text-center" scope="col">Nip</th>
-                                <th class=" text-center" scope="col">Nama siswa</th>
+                                <th class=" text-center" scope="col">Nomor Induk Siswa
+                                </th>
+                                <th class=" text-center" scope="col">Nama Siswa</th>
                                 <th class=" text-center" scope="col">Jenis Kelamin</th>
                                 <th class=" text-center" scope="col">Telepon</th>
                                 <th class=" text-center" scope="col">Photo</th>
@@ -65,7 +67,7 @@
                                 @foreach ($Siswa as $key => $siswa)
                               <tr>
                                 <th class=" text-center" scope="row">{{ $Siswa->firstItem() + $key }}</th>
-                                <td scope="row">{{ $siswa->nip }}</td>
+                                <td scope="row">{{ $siswa->nis }}</td>
                                 <td scope="row">{{ $siswa->nama }}</td>
                                 <td scope="row">{{ $siswa->jenis_kelamin }}</td>
                                 <td scope="row">{{ $siswa->telepon }}</td>
@@ -122,8 +124,12 @@
         <form action="{{ url('/tambahsiswa')}}" method="POST" enctype="multipart/form-data">
           @csrf
           <div class="form-group">
-              <label>NIP</label>
-              <input type="text" name="nip" class="form-control" autofocus required maxlength="15">
+            <label>Id Siswa</label>
+            <input type="text" name="Id" class="form-control" autofocus value="{{$siswa->id+1}}" readonly>
+        </div>
+          <div class="form-group">
+              <label>Nomor Induk Siswa</label>
+              <input type="text" name="nis" class="form-control" autofocus required maxlength="15">
           </div>
           <div class="form-group">
               <label>Nama Siswa</label>
@@ -147,6 +153,22 @@
               <div class="form-group">
                 <label>Tanggal Lahir</label>
                 <input type="date" name="tanggallahir" id="tanggallahir" class="form-control" autofocus required>
+            </div>
+              <div class="form-group">
+                <label>Tempat Lahir</label>
+                <input type="text" name="tempatlahir" id="tempatlahir" class="form-control" maxlength="30" autofocus required>
+            </div>
+              <div class="form-group">
+                <label>Agama</label>
+                <input type="text" name="agama" id="agama" class="form-control" maxlength="20" autofocus required>
+            </div>
+              <div class="form-group">
+                <label>Alamat</label>
+                <input type="text" name="alamat" id="alamat" class="form-control" autofocus required>
+            </div>
+              <div class="form-group">
+                <label>Tahun Angkatan</label>
+                <input type="text" name="tahunangkatan" id="tahunangkatan" class="form-control" maxlength="30" autofocus required>
             </div>
           <div class="form-group">
               <label>Email</label>

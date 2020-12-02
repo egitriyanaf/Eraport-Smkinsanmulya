@@ -69,6 +69,10 @@
         <label>Telepon</label>
         <input type="text" name="telepon" class="form-control" value="{{$Guru->telepon}}" autofocus required maxlength="16">
     </div>
+    <div class="form-group">
+        <label>Alamat</label>
+        <input type="text" name="alamat" class="form-control" value="{{$Guru->alamat}}" autofocus required>
+    </div>
         <div class="form-group">
           <label for="uploadphoto">Upload Photo</label>
           <input type="file" name="photo" class="form-control-file" id="uploadphoto">{{$Guru->photo}} 

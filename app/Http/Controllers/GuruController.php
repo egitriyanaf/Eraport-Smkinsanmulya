@@ -49,6 +49,7 @@ class GuruController extends Controller
                 'nama' => $request->nama,
                 'jenis_kelamin' => $request->jeniskelamin,
                 'telepon' => $request->telepon,
+                'alamat' => $request->alamat,
                 'photo' => $photoname,
                 'email' => $request->email,
                 'password' => Hash::make($request['password'])
@@ -60,6 +61,7 @@ class GuruController extends Controller
                     'nama' => $request->nama,
                     'jenis_kelamin' => $request->jeniskelamin,
                     'telepon' => $request->telepon,
+                    'alamat' => $request->alamat,
                     'email' => $request->email,
                     'password' => Hash::make($request['password'])
                     ]);
@@ -92,6 +94,7 @@ class GuruController extends Controller
                     'nama' => $request->nama,
                     'jenis_kelamin' => $request->jeniskelamin,
                     'telepon' => $request->telepon,
+                    'alamat' => $request->alamat,
                     'photo' => $photoname,
                     'email' => $request->email,
                     'password' => Hash::make($request['password'])
@@ -102,6 +105,7 @@ class GuruController extends Controller
                 'nama' => $request->nama,
                 'jenis_kelamin' => $request->jeniskelamin,
                 'telepon' => $request->telepon,
+                'alamat' => $request->alamat,
                 'email' => $request->email,
                 'password' => Hash::make($request['password'])
         ]);

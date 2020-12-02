@@ -13,6 +13,7 @@ class Guru extends Model
         'nama',
         'jenis_kelamin',
         'telepon',
+        'alamat',
         'photo',
         'email',
         'password',

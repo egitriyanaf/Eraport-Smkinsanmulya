@@ -129,7 +129,7 @@ Dashboard
                             <i class="educate-icon educate-library"></i>
                         </div>
                         <div class="m-t-xl widget-cl-4">
-                            <h1 class=" text-dark">0</h1>
+                            <h1 class=" text-dark">{{($Matapelajaran->total())}}</h1>
                         </div>
                     </div>
                 </div>
