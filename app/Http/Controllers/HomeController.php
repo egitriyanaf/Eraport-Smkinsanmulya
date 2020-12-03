@@ -8,6 +8,7 @@ use App\Models\Admin;
 use App\Models\Guru;
 use App\Models\Siswa;
 use App\Models\Matapelajaran;
+use App\Models\Kelas;
 class HomeController extends Controller
 {
     /**
@@ -32,11 +33,13 @@ class HomeController extends Controller
         $guru=Guru::paginate();
         $siswa=Siswa::paginate();
         $matapelajaran=Matapelajaran::paginate();
+        $kelas=Kelas::paginate();
         return view('home',[
             'Admin'=>$admin,
             'Guru'=>$guru,
             'Siswa'=>$siswa,
             'Matapelajaran'=>$matapelajaran,
+            'Kelas'=>$kelas,
             ]);
     }
 }

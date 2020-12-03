@@ -67,13 +67,13 @@ Management Siswa
                                 @foreach ($Siswa as $key => $siswa)
                               <tr>
                                 <th class=" text-center" scope="row">{{ $Siswa->firstItem() + $key }}</th>
-                                <td scope="row">{{ $siswa->nis }}</td>
-                                <td scope="row">{{ $siswa->nama }}</td>
-                                <td scope="row">{{ $siswa->jenis_kelamin }}</td>
-                                <td scope="row">{{ $siswa->telepon }}</td>
+                                <td class=" text-center" scope="row">{{ $siswa->nis }}</td>
+                                <td class=" text-center" scope="row">{{ $siswa->nama }}</td>
+                                <td class=" text-center" scope="row">{{ $siswa->jenis_kelamin }}</td>
+                                <td class=" text-center" scope="row">{{ $siswa->telepon }}</td>
                                 <td class=" text-center" scope="row"><img width="40px" height="60px" src="{{ url('/storage/avatar siswa/'.$siswa->photo) }}"></td>
-                                <td scope="row">{{ $siswa->tanggal_lahir }}</td>
-                                <td scope="row">{{ $siswa->email }}</td>
+                                <td class=" text-center" scope="row">{{ $siswa->tanggal_lahir }}</td>
+                                <td class=" text-center" scope="row">{{ $siswa->email }}</td>
                                 <td scope="row" class=" text-center">
                                   <a href="{{url('/editsiswa/'.$siswa->id)}}"><button type="button" class="btn btn-warning" data-toggle="modal" data-target="#editModal"><i class="fa fa-edit">
                                     Edit

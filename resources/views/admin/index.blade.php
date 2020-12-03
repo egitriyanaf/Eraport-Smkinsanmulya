@@ -65,12 +65,12 @@ Management Admin
                                 @foreach ($Admin as $key => $admin)
                               <tr>
                                 <th class=" text-center" scope="row">{{ $Admin->firstItem() + $key }}</th>
-                                <td scope="row">{{ $admin->nip }}</td>
-                                <td scope="row">{{ $admin->nama }}</td>
-                                <td scope="row">{{ $admin->jenis_kelamin }}</td>
-                                <td scope="row">{{ $admin->telepon }}</td>
+                                <td class=" text-center" scope="row">{{ $admin->nip }}</td>
+                                <td class=" text-center" scope="row">{{ $admin->nama }}</td>
+                                <td class=" text-center" scope="row">{{ $admin->jenis_kelamin }}</td>
+                                <td class=" text-center" scope="row">{{ $admin->telepon }}</td>
                                 <td class=" text-center" scope="row"><img width="40px" height="60px" src="{{ url('/storage/avatar admin/'.$admin->photo) }}"></td>
-                                <td scope="row">{{ $admin->email }}</td>
+                                <td class=" text-center" scope="row">{{ $admin->email }}</td>
                                 <td scope="row" class=" text-center">
                                   <a href="{{url('/editadmin/'.$admin->id)}}"><button type="button" class="btn btn-warning" data-toggle="modal" data-target="#editModal"><i class="fa fa-edit">
                                     Edit

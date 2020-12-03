@@ -15,4 +15,12 @@ class Matapelajaran extends Model
         'created_at',
         'updated_at'
     ];
+   public function getmatapelajaranID()
+   {
+       return sprintf('P-%03d', $this->id);
+   }
+   public function getmatapelajaranIDplus()
+   {
+       return sprintf('P-%03d', $this->id+1);
+   }
 }

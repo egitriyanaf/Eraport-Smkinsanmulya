@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('title')
-Edit Mata Pelajaran
+Edit Kelas
 @endsection
 @section('body')
 <div class="breadcome-area">
@@ -14,9 +14,9 @@ Edit Mata Pelajaran
 
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                             <ul class="breadcome-menu">
-                                <li><a href="{{url('/matapelajaran')}}">Mata Pelajaran</a> <span class="bread-slash">/</span>
+                                <li><a href="{{url('/kelas')}}">Kelas</a> <span class="bread-slash">/</span>
                                 </li>
-                                <li><span class="bread-blod">Edit Mata Pelajaran</span>
+                                <li><span class="bread-blod">Edit Kelas</span>
                                 </li>
                             </ul>
                         </div>
@@ -42,29 +42,43 @@ Edit Mata Pelajaran
 
 <!--Modal Edit-->
 <div class="modal-body">
-  <form action="{{ url('updatematapelajaran/'.$Matapelajaran->id)}}" method="POST" enctype="multipart/form-data">
+  <form action="{{ url('updatekelas/'.$Kelas->id)}}" method="POST" enctype="multipart/form-data">
     @method('patch')
     @csrf
     <div class="form-group">
-        <label>Kode Pelajaran</label>
-        <input type="text" name="kodepelajaran" class="form-control" value="{{$Matapelajaran->getmatapelajaranID()}}" readonly>
+        <label>Kode Kelas</label>
+        <input type="text" name="id" class="form-control" value="{{$Kelas->getkelasID()}}" readonly>
     </div>
     <div class="form-group">
-        <label>Nama Pelajaran</label>
-        <input type="text" name="namapelajaran" class="form-control" value="{{$Matapelajaran->nama_pelajaran}}" autofocus required maxlength="30">
+        <label>Tahun Ajaran</label>
+        <input type="text" name="tahunajaran" class="form-control" value="{{$Kelas->tahun_ajaran}}" autofocus required maxlength="20">
     </div>
+    
     <div class="form-group">
-        <label>Keterangan</label>
-        <select class="form-control" name="keterangan" id="keterangan" value="{{$Matapelajaran->keterangan}}">
-            <option value="Wajib" @if ($Matapelajaran->keterangan=='Wajib')
-              selected @endif>Wajib</option>
-            <option value="Tambahan" @if ($Matapelajaran->keterangan=='Tambahan')
-              selected @endif>Tambahan</option>
+        <label>Kelas</label>
+        <select class="form-control" name="kelas" id="kelas" autofocus required value="{{$Kelas->kelas}}">
+            <option value="X"@if ($Kelas->kelas=='X')
+                selected @endif>X</option>
+            <option value="XI"@if ($Kelas->kelas=='XI')
+                selected @endif>XI</option>
+            <option value="XII"@if ($Kelas->kelas=='XII')
+                selected @endif>XII</option>
         </select>
     </div>
+    
+    <div class="form-group">
+        <label>Nama Kelas</label>
+        <input type="text" name="namakelas" class="form-control" value="{{$Kelas->nama_kelas}}" autofocus required maxlength="30">
+    </div>
+    
+    <div class="form-group">
+        <label>Wali Kelas</label>
+        <input type="text" name="walikelas" class="form-control" value="{{$Kelas->wali_kelas}}" autofocus required maxlength="60">
+    </div>
+    
 </div>
 <div class="modal-footer">
-    <a href="{{url('/matapelajaran')}}" class="btn btn-secondary">Tutup</a>
+    <a href="{{url('/kelas')}}" class="btn btn-secondary">Tutup</a>
     <button type="submit" class="btn btn-primary">Simpan</button>
   </div>
     </form>

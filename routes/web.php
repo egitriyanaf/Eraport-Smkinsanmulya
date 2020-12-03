@@ -67,8 +67,13 @@ Route::delete('/deletematapelajaran/{id}',[MatapelajaranController::class, 'dele
 
 //kelas
 Route::get('/kelas', [KelasController::class, 'index'])->name('kelas.index');
+Route::get('/kelas/search', [KelasController::class, 'search'])->name('kelas.search');
+Route::post('/tambahkelas', [KelasController::class, 'tambahkelas'])->name('kelas.tambah');
+Route::get('/editkelas/{id}', [KelasController::class, 'editkelas'])->name('kelas.edit');
+Route::patch('/updatekelas/{id}', [KelasController::class, 'updatekelas'])->name('kelas.update');
+Route::delete('/deletekelas/{id}',[KelasController::class, 'deletekelas'])->name('kelas.delete');
 
-///kelassiwa
+//kelassiwa
 Route::get('/kelassiswa', [KelassiswaController::class, 'index'])->name('kelassiswa.index');
 
 //nilai

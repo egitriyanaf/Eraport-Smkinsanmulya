@@ -92,7 +92,7 @@ Dashboard
                             <i class="educate-icon educate-department"></i>
                         </div>
                         <div class="m-t-xl widget-cl-4">
-                            <h1 class="text-danger">0</h1>
+                            <h1 class="text-danger">{{($Kelas->total())}}</h1>
                         </div>
                     </div>
                 </div>

@@ -62,17 +62,17 @@ Kelas
                             <tbody>
                                 @foreach ($Kelas as $key => $kelas)
                               <tr>
-                                <th class=" text-center" scope="row">{{ $kelas->firstItem() + $key }}</th>
-                                <td scope="row" class="text-center">{{ $kelas->id }}</td>
+                                <th class=" text-center" scope="row">{{ $Kelas->firstItem()+ $key }}</th>
+                                <td scope="row" class="text-center">{{ $kelas->getkelasID() }}</td>
                                 <td scope="row" class="text-center">{{ $kelas->tahun_ajaran }}</td>
                                 <td scope="row" class="text-center">{{ $kelas->kelas }}</td>
                                 <td scope="row" class="text-center">{{ $kelas->nama_kelas }}</td>
                                 <td scope="row" class="text-center">{{ $kelas->wali_kelas }}</td>
                                 <td scope="row" class=" text-center">
-                                  <a href="{{url('/editkelas/'.$Kelas->id)}}"><button type="button" class="btn btn-warning" data-toggle="modal" data-target="#editModal"><i class="fa fa-edit">
+                                  <a href="{{url('/editkelas/'.$kelas->id)}}"><button type="button" class="btn btn-warning" data-toggle="modal" data-target="#editModal"><i class="fa fa-edit">
                                     Edit
                                   </i></button></a>
-                                    <form action="{{url('/deletekelas/'.$Kelas->id)}}" method="POST" class="d-inline" onsubmit="return confirm('Apakah yakin data ini ingin di hapus?')">
+                                    <form action="{{url('/deletekelas/'.$kelas->id)}}" method="POST" class="d-inline" onsubmit="return confirm('Apakah yakin data ini ingin di hapus?')">
                                         @method('delete')
                                         @csrf
                                         <button class="btn btn-danger btn-sm">
@@ -117,10 +117,12 @@ Kelas
       <div class="modal-body">
         <form action="{{ url('/tambahkelas')}}" method="POST" enctype="multipart/form-data">
           @csrf
+          @foreach ($Kelas as $kelas)
           <div class="form-group">
             <label>Kode Kelas</label>
-            <input type="text" name="kodekelas" class="form-control" autofocus readonly>
+            <input type="text" name="kodekelas" class="form-control" value="{{$kelas->getkelasIDplus()}}" autofocus readonly>
         </div>
+        @endforeach
           <div class="form-group">
               <label>Tahun Ajaran</label>
               <input type="text" name="tahunajaran" class="form-control" autofocus required maxlength="20">

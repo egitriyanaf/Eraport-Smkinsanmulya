@@ -62,7 +62,7 @@ Mata Pelajaran
                                 @foreach ($Matapelajaran as $key => $matapelajaran)
                               <tr>
                                 <th class=" text-center" scope="row">{{ $Matapelajaran->firstItem() + $key }}</th>
-                                <td scope="row" class="text-center">{{ $matapelajaran->id }}</td>
+                                <td scope="row" class="text-center">{{ $matapelajaran->getmatapelajaranID()}}</td>
                                 <td scope="row" class="text-center">{{ $matapelajaran->nama_pelajaran }}</td>
                                 <td scope="row" class="text-center">{{ $matapelajaran->keterangan }}</td>
                                 <td scope="row" class=" text-center">
@@ -116,7 +116,7 @@ Mata Pelajaran
           @csrf
           <div class="form-group">
             <label>Kode Pelajaran</label>
-            <input type="text" name="kodepelajaran" class="form-control" value="{{$matapelajaran->id+1}}" autofocus readonly>
+            <input type="text" name="kodepelajaran" class="form-control" value="{{$matapelajaran->getmatapelajaranIDplus()}}" autofocus readonly>
         </div>
           <div class="form-group">
               <label>Nama Pelajaran</label>

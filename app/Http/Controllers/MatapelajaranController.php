@@ -45,13 +45,13 @@ class MatapelajaranController extends Controller
             'nama_pelajaran' => $request->namapelajaran,
             'keterangan' => $request->keterangan,        
             ]);
-         return redirect('/siswa')->with('status', 'data berhasil diupdate!');
+         return redirect('/matapelajaran')->with('status', 'data berhasil diupdate!');
     }
 
     public function deletematapelajaran()
     {
         $matapelajaran=Matapelajaran::FindOrFail($id);
         $matapelajaran->delete();
-        return redirect('/siswa')->with('status', 'data berhasil dihapus!');
+        return redirect('/matapelajaran')->with('status', 'data berhasil dihapus!');
     }
 }

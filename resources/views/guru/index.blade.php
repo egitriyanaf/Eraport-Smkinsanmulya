@@ -65,12 +65,12 @@ Management Guru
                                 @foreach ($Guru as $key => $guru)
                               <tr>
                                 <th class=" text-center" scope="row">{{ $Guru->firstItem() + $key }}</th>
-                                <td scope="row">{{ $guru->nip }}</td>
-                                <td scope="row">{{ $guru->nama }}</td>
-                                <td scope="row">{{ $guru->jenis_kelamin }}</td>
-                                <td scope="row">{{ $guru->telepon }}</td>
+                                <td class=" text-center" scope="row">{{ $guru->nip }}</td>
+                                <td class=" text-center" scope="row">{{ $guru->nama }}</td>
+                                <td class=" text-center" scope="row">{{ $guru->jenis_kelamin }}</td>
+                                <td class=" text-center" scope="row">{{ $guru->telepon }}</td>
                                 <td class=" text-center" scope="row"><img width="40px" height="60px" src="{{ url('/storage/avatar guru/'.$guru->photo) }}"></td>
-                                <td scope="row">{{ $guru->email }}</td>
+                                <td class=" text-center" scope="row">{{ $guru->email }}</td>
                                 <td scope="row" class=" text-center">
                                   <a href="{{url('/editguru/'.$guru->id)}}"><button type="button" class="btn btn-warning" data-toggle="modal" data-target="#editModal"><i class="fa fa-edit">
                                     Edit
