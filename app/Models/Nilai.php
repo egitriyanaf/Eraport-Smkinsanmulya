@@ -7,5 +7,29 @@ use Illuminate\Database\Eloquent\Model;
 
 class Nilai extends Model
 {
-    use HasFactory;
+    protected $table='Nilai';
+    protected $primarykey='id';
+    protected $fillable = [
+        'nis',
+        'nama',
+        'semester',
+        'mata_pelajaran',
+        'tugas_1',
+        'tugas_2',
+        'tugas_3',
+        'tugas_3',
+        'uts',
+        'uas',
+        'created_at',
+        'updated_at'
+    ];
+
+    public function getnilaiID()
+   {
+       return sprintf('N-%03d', $this->id);
+   }
+   public function getnilaiIDplus()
+   {
+       return sprintf('N-%03d', $this->id+1);
+   }
 }

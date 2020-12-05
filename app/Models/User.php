@@ -17,10 +17,12 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name',
         'email',
         'password',
         'role',
+        'id_personil',
+        'created_at',
+        'updated_at'
     ];
 
     /**
@@ -41,4 +43,13 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function getuserID()
+    {
+        return sprintf('user-%03d', $this->id);
+    }
+    public function getuserIDplus()
+    {
+        return sprintf('user-%03d', $this->id+1);
+    }
 }

@@ -41,13 +41,13 @@ Dashboard
                 <div class="hpanel widget-int-shape responsive-mg-b-30">
                     <div class="panel-body">
                         <div class="stats-title pull-left">
-                            <h4>Total Admin</h4>
+                            <h4>Total User</h4>
                         </div>
                         <div class="stats-icon pull-right">
                             <i class="educate-icon educate-apps"></i>
                         </div>
                         <div class="m-t-xl widget-cl-1">
-                            <h1 class="text-success">{{($Admin->total())}}</h1>
+                            <h1 class="text-success">{{($User->total())}}</h1>
                         </div>
                     </div>
                 </div>
@@ -89,7 +89,7 @@ Dashboard
                             <h4>Total Kelas</h4>
                         </div>
                         <div class="stats-icon pull-right">
-                            <i class="educate-icon educate-department"></i>
+                            <i class="educate-icon educate-home"></i>
                         </div>
                         <div class="m-t-xl widget-cl-4">
                             <h1 class="text-danger">{{($Kelas->total())}}</h1>
@@ -100,21 +100,6 @@ Dashboard
             <div class="product-sales-area mg-tb-30">
                 <div class="container-fluid">
                     <div class="row">
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-                <div class="hpanel widget-int-shape res-tablet-mg-t-30 dk-res-t-pro-30">
-                    <div class="panel-body">
-                        <div class="stats-title pull-left">
-                            <h4>Total Kelas Siswa</h4>
-                        </div>
-                        <div class="stats-icon pull-right">
-                            <i class="educate-icon educate-star"></i>
-                        </div>
-                        <div class="m-t-xl widget-cl-4">
-                            <h1 class="text-warning">0</h1>
-                        </div>
                     </div>
                 </div>
             </div>

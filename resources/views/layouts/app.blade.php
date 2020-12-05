@@ -62,7 +62,8 @@
     <!-- modernizr JS
         ============================================ -->
     <script src="{{asset('asset/js/vendor/modernizr-2.8.3.min.js')}}"></script>
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+@stack('adduserscript')
 
         
 </head>
@@ -82,7 +83,12 @@
                         <li>
                             <a class="has-arrow" href="#" aria-expanded="false"><span class="educate-icon educate-apps icon-wrap"></span> <span class="mini-click-non">User</span></a>
                             <ul class="submenu-angle" aria-expanded="false">
-                                <li><a title="Admin" href="{{url('/admin')}}"><span class="mini-sub-pro">Admin</span></a></li>
+                                <li><a title="User" href="{{url('/user')}}"><span class="mini-sub-pro">Management User</span></a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a class="has-arrow" href="#" aria-expanded="false"><span class="educate-icon educate-department icon-wrap"></span> <span class="mini-click-non">Personil</span></a>
+                            <ul class="submenu-angle" aria-expanded="false">
                                 <li><a title="Guru" href="{{url('/guru')}}"><span class="mini-sub-pro">Guru</span></a></li>
                                 <li><a title="Siswa" href="{{url('/siswa')}}"><span class="mini-sub-pro">Siswa</span></a></li>
                             </ul>
@@ -205,7 +211,7 @@
                                         <li><a href="{{url('/home')}}">Dashboard</a></li>
                                         <li><a data-toggle="collapse" data-target="#demoevent" href="#">User<span class="admin-project-icon edu-icon edu-down-arrow"></span></a>
                                             <ul id="demoevent" class="collapse dropdown-header-top">
-                                                <li><a href="{{url('/admin')}}">Admin</a>
+                                                <li><a href="{{url('/user')}}">Admin</a>
                                                 </li>
                                                 <li><a href="{{url('/guru')}}">Guru</a>
                                                 </li>

@@ -1,4 +1,45 @@
 @extends('layouts.app')
+@push('adduserscript')
+<script>
+  $(document).ready(function() {
+    $("#div-guru").hide();
+    $("#div-siswa").hide();
+
+    $("select.role").change(function(){
+      var selectedRole = $(this).children("option:selected").val();
+      {{--  alert("You have selected the role - " + selectedRole);  --}}
+
+      if (selectedRole == "Guru") {
+        $("#div-guru").show();
+        $("#div-siswa").hide();
+      } else if (selectedRole == "Siswa") {
+        $("#div-guru").hide();
+        $("#div-siswa").show();
+      } else {
+        $("#div-guru").hide();
+        $("#div-siswa").hide();
+      }
+    });
+  });
+
+  console.log("test");
+  var valueRole = document.getElementById("role");
+  var divGuru = document.getElementById("div-guru");
+  var divSiswa = document.getElementById("div-siswa");
+  console.log(valueRole);
+
+  if (valueRole == "Guru") {
+    divGuru.style.display.display = 'block';
+    divSiswa.style.display.display = 'none';
+  } else if (valueRole == "Siswa") {
+    divGuru.style.display.display = 'none';
+    divSiswa.style.display.display = 'block';
+  } 
+
+</script>
+@endpush
+
+
 @section('title')
 Management Admin
 @endsection
@@ -11,7 +52,7 @@ Management Admin
                     <div class="row">
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                             <div class="breadcome-heading">
-                                <form role="search" class="sr-input-func" method="GET" action="{{url('/admin/search')}}">
+                                <form role="search" class="sr-input-func" method="GET" action="{{url('/user/search')}}">
                                     <input name="cari" type="text" placeholder="Search..." value="{{old('cari')}}" class="search-int form-control">
                                 </form>
                             </div>
@@ -19,7 +60,7 @@ Management Admin
 
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                             <ul class="breadcome-menu">
-                                <li><a href="{{url('/admin')}}">Management Admin</a> <span class="bread-slash"></span>
+                                <li><a href="{{url('/user')}}">Management Admin</a> <span class="bread-slash"></span>
                                 </li>
                                 {{-- <li><span class="bread-blod">@yield()</span>
                                 </li> --}}
@@ -62,20 +103,20 @@ Management Admin
                               </tr>
                             </thead>
                             <tbody>
-                                @foreach ($Admin as $key => $admin)
+                                @foreach ($User as $key => $user)
                               <tr>
-                                <th class=" text-center" scope="row">{{ $Admin->firstItem() + $key }}</th>
-                                <td class=" text-center" scope="row">{{ $admin->nip }}</td>
-                                <td class=" text-center" scope="row">{{ $admin->nama }}</td>
-                                <td class=" text-center" scope="row">{{ $admin->jenis_kelamin }}</td>
-                                <td class=" text-center" scope="row">{{ $admin->telepon }}</td>
-                                <td class=" text-center" scope="row"><img width="40px" height="60px" src="{{ url('/storage/avatar admin/'.$admin->photo) }}"></td>
-                                <td class=" text-center" scope="row">{{ $admin->email }}</td>
+                                <th class=" text-center" scope="row">{{ $User->firstItem() + $key }}</th>
+                                <td class=" text-center" scope="row">{{ $user->nip }}</td>
+                                <td class=" text-center" scope="row">{{ $user->name }}</td>
+                                <td class=" text-center" scope="row">{{ $user->jenis_kelamin }}</td>
+                                <td class=" text-center" scope="row">{{ $user->telepon }}</td>
+                                <td class=" text-center" scope="row"><img width="40px" height="60px" src="{{ url('/storage/avatar admin/'.$user->photo) }}"></td>
+                                <td class=" text-center" scope="row">{{ $user->email }}</td>
                                 <td scope="row" class=" text-center">
-                                  <a href="{{url('/editadmin/'.$admin->id)}}"><button type="button" class="btn btn-warning" data-toggle="modal" data-target="#editModal"><i class="fa fa-edit">
+                                  <a href="{{url('/editadmin/'.$user->id)}}"><button type="button" class="btn btn-warning" data-toggle="modal" data-target="#editModal"><i class="fa fa-edit">
                                     Edit
                                   </i></button></a>
-                                    <form action="{{url('/deleteadmin/'.$admin->id)}}" method="POST" class="d-inline" onsubmit="return confirm('Apakah yakin data ini ingin di hapus?')">
+                                    <form action="{{url('/deleteadmin/'.$user->id)}}" method="POST" class="d-inline" onsubmit="return confirm('Apakah yakin data ini ingin di hapus?')">
                                         @method('delete')
                                         @csrf
                                         <button class="btn btn-danger btn-sm">
@@ -94,15 +135,15 @@ Management Admin
         </div>
         <div class="fa-pull-left">
             Menampilkan
-            {{$Admin->firstItem()}}
+            {{$User->firstItem()}}
             sampai
-            {{$Admin->lastItem()}}
+            {{$User->lastItem()}}
             dari
-            {{$Admin->total()}}
+            {{$User->total()}}
             total data
           </div>
           <div class="fa-pull-right">
-            {{$Admin->links()}}
+            {{$User->links()}}
           </div>
     </div>
 </div>
@@ -120,40 +161,48 @@ Management Admin
       <div class="modal-body">
         <form action="{{ url('/tambahadmin')}}" method="POST" enctype="multipart/form-data">
           @csrf
+          @foreach ($User as $user)
           <div class="form-group">
-            <label>Id Admin</label>
-            <input type="text" name="Id" class="form-control" autofocus value="{{$admin->id+1}}" readonly>
+            <label>Id User</label>
+            <input type="text" name="Id" class="form-control" autofocus value="{{$user->getuserIDplus()}}" readonly>
         </div>
-          <div class="form-group">
-              <label>NIP</label>
-              <input type="text" name="nip" class="form-control" autofocus required maxlength="15">
-          </div>
-          <div class="form-group">
-              <label>Nama</label>
-              <input type="text" name="nama" class="form-control" autofocus required maxlength="30">
-          </div>
-          <div class="form-group">
-              <label>Jenis Kelamin</label>
-              <select class="form-control" name="jeniskelamin" id="jeniskelamin">
-                  <option value="Laki-laki">Laki-laki</option>
-                  <option value="Perempuan">Perempuan</option>
-              </select>
-          </div>
-          <div class="form-group">
-              <label>Telepon</label>
-              <input type="text" name="telepon" class="form-control" autofocus required maxlength="16">
-          </div>
-              <div class="form-group">
-                <label for="uploadphoto">Upload Photo</label>
-                <input type="file" name="photo" class="form-control-file" id="uploadphoto">
-              </div>
+        @endforeach
           <div class="form-group">
               <label>Email</label>
-              <input type="email" name="email" id="email" class="form-control" maxlength="25" autofocus required>
+              <input type="email" name="email" id="email" class="form-control" maxlength="30" autofocus required>
           </div>
           <div class="form-group">
             <label>Password</label>
-            <input type="password" name="password" id="password" class="form-control" maxlength="25" autofocus required>
+            <input type="password" name="password" id="password" class="form-control" maxlength="30" autofocus required>
+        </div>
+        
+        
+        <div class="form-group">
+          <label>Role</label>
+          <select class="form-control role" name="role" id="role" autofocus required>
+            <option selected disabled hidden>-- Pilih Role --</option>
+            <option value="Admin">Admin</option>
+            <option value="Guru">Guru</option>
+            <option value="Siswa">Siswa</option>
+          </select>
+        </div>
+        <div id="div-guru" class="form-group">
+          <label>Guru</label>
+          <select class="form-control" name="guru" id="guru" autofocus required>
+            @foreach ( $Guru as $guru )
+            <option selected disabled hidden>-- Pilih Guru --</option>
+            <option value="{{$guru->id}}">({{$guru->nip}}) {{$guru->nama}}</option>
+            @endforeach
+          </select>
+        </div>
+        <div id="div-siswa" class="form-group">
+          <label>Siswa</label>
+          <select class="form-control" name="siswa" id="siswa" autofocus required>
+            @foreach ( $Siswa as $siswa )
+            <option selected disabled hidden>-- Pilih Siswa --</option>
+            <option value="{{$siswa->id}}">({{$siswa->nis}}) {{$siswa->nama}}</option>
+            @endforeach
+          </select>
         </div>
       </div>
       <div class="modal-footer">

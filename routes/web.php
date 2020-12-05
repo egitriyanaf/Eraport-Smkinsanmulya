@@ -33,9 +33,9 @@ Auth::routes();
 //home or dashboard
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
-//admin
-Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
-Route::get('/admin/search', [AdminController::class, 'search'])->name('admin.search');
+//user
+Route::get('/user', [AdminController::class, 'index'])->name('admin.index');
+Route::get('/user/search', [AdminController::class, 'search'])->name('admin.search');
 Route::post('/tambahadmin', [AdminController::class, 'tambahadmin'])->name('admin.tambah');
 Route::get('/editadmin/{id}', [AdminController::class, 'editadmin'])->name('admin.edit');
 Route::patch('/updateadmin/{id}', [AdminController::class, 'updateadmin'])->name('admin.update');
@@ -75,6 +75,11 @@ Route::delete('/deletekelas/{id}',[KelasController::class, 'deletekelas'])->name
 
 //kelassiwa
 Route::get('/kelassiswa', [KelassiswaController::class, 'index'])->name('kelassiswa.index');
+Route::get('/kelassiswa/search', [KelassiswaController::class, 'search'])->name('kelassiswa.search');
+Route::post('/tambahkelassiswa', [KelassiswaController::class, 'tambahkelassiswa'])->name('kelassiswa.tambah');
+Route::get('/editkelassiswa/{id}', [KelassiswaController::class, 'editkelassiswa'])->name('kelassiswa.edit');
+Route::patch('/updatekelassiswa/{id}', [KelassiswaController::class, 'updatekelassiswa'])->name('kelassiswa.update');
+Route::delete('/deletekelassiswa/{id}',[KelassiswaController::class, 'deletekelassiswa'])->name('kelassiswa.delete');
 
 //nilai
 Route::get('/nilai', [NilaiController::class, 'index'])->name('nilai.index');

@@ -4,11 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
-use App\Models\Admin;
 use App\Models\Guru;
 use App\Models\Siswa;
 use App\Models\Matapelajaran;
 use App\Models\Kelas;
+use App\Models\Kelassiswa;
 class HomeController extends Controller
 {
     /**
@@ -29,17 +29,19 @@ class HomeController extends Controller
     public function index()
     {
         User::all();
-        $admin=Admin::paginate();
+        $user=User::paginate();
         $guru=Guru::paginate();
         $siswa=Siswa::paginate();
         $matapelajaran=Matapelajaran::paginate();
         $kelas=Kelas::paginate();
+        $kelassiswa=Kelassiswa::paginate();
         return view('home',[
-            'Admin'=>$admin,
+            'User'=>$user,
             'Guru'=>$guru,
             'Siswa'=>$siswa,
             'Matapelajaran'=>$matapelajaran,
             'Kelas'=>$kelas,
+            'Kelassiswa'=>$kelassiswa,
             ]);
     }
 }
