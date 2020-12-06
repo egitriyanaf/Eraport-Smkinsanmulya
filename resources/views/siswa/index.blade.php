@@ -59,7 +59,6 @@ Management Siswa
                                 <th class=" text-center" scope="col">Telepon</th>
                                 <th class=" text-center" scope="col">Photo</th>
                                 <th class=" text-center" scope="col">Tanggal Lahir</th>
-                                <th class=" text-center" scope="col">Email</th>
                                 <th class=" text-center" scope="col">Aksi</th>
                               </tr>
                             </thead>
@@ -71,9 +70,8 @@ Management Siswa
                                 <td class=" text-center" scope="row">{{ $siswa->nama }}</td>
                                 <td class=" text-center" scope="row">{{ $siswa->jenis_kelamin }}</td>
                                 <td class=" text-center" scope="row">{{ $siswa->telepon }}</td>
-                                <td class=" text-center" scope="row"><img width="40px" height="60px" src="{{ url('/storage/avatar siswa/'.$siswa->photo) }}"></td>
                                 <td class=" text-center" scope="row">{{ $siswa->tanggal_lahir }}</td>
-                                <td class=" text-center" scope="row">{{ $siswa->email }}</td>
+                                <td class=" text-center" scope="row"><img width="40px" height="60px" src="{{ url('/storage/avatar siswa/'.$siswa->photo) }}"></td>
                                 <td scope="row" class=" text-center">
                                   <a href="{{url('/editsiswa/'.$siswa->id)}}"><button type="button" class="btn btn-warning" data-toggle="modal" data-target="#editModal"><i class="fa fa-edit">
                                     Edit
@@ -125,7 +123,7 @@ Management Siswa
           @csrf
           <div class="form-group">
             <label>Id Siswa</label>
-            <input type="text" name="Id" class="form-control" autofocus value="{{$siswa->id+1}}" readonly>
+            <input type="text" name="Id" class="form-control" autofocus value="{{$siswa->getsiswaIDplus()}}" readonly>
         </div>
           <div class="form-group">
               <label>Nomor Induk Siswa</label>
@@ -169,15 +167,7 @@ Management Siswa
               <div class="form-group">
                 <label>Tahun Angkatan</label>
                 <input type="text" name="tahunangkatan" id="tahunangkatan" class="form-control" maxlength="30" autofocus required>
-            </div>
-          <div class="form-group">
-              <label>Email</label>
-              <input type="email" name="email" id="email" class="form-control" maxlength="25" autofocus required>
-          </div>
-          <div class="form-group">
-            <label>Password</label>
-            <input type="password" name="password" id="password" class="form-control" maxlength="25" autofocus required>
-        </div>
+              </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>

@@ -20,9 +20,6 @@ class Siswa extends Model
         'agama',
         'alamat',
         'tahun_angkatan',
-        'email',
-        'password',
-        'role',
         'created_at',
         'updated_at'
     ];
@@ -35,4 +32,13 @@ class Siswa extends Model
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function getsiswaID()
+    {
+        return sprintf('Siswa-%03d', $this->id);
+    }
+    public function getsiswaIDplus()
+    {
+        return sprintf('Siswa-%03d', $this->id+1);
+    }
 }

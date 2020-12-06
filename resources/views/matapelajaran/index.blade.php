@@ -52,8 +52,8 @@ Mata Pelajaran
                             <thead>
                               <tr>
                                 <th class=" text-center" scope="col">No</th>
-                                <th class=" text-center" scope="col">Kode Pelajaran</th>
-                                <th class=" text-center" scope="col">Nama Pelajaran</th>
+                                <th class=" text-center" scope="col">ID Mata Pelajaran</th>
+                                <th class=" text-center" scope="col">Nama Mata Pelajaran</th>
                                 <th class=" text-center" scope="col">Keterangan</th>
                                 <th class=" text-center" scope="col">Aksi</th>
                               </tr>
@@ -115,7 +115,7 @@ Mata Pelajaran
         <form action="{{ url('/tambahmatapelajaran')}}" method="POST" enctype="multipart/form-data">
           @csrf
           <div class="form-group">
-            <label>Kode Pelajaran</label>
+            <label>ID Mata Pelajaran</label>
             <input type="text" name="kodepelajaran" class="form-control" value="{{$matapelajaran->getmatapelajaranIDplus()}}" autofocus readonly>
         </div>
           <div class="form-group">

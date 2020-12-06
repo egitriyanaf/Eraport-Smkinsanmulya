@@ -66,17 +66,15 @@ Edit Kelas Siswa
         <input type="text" name="tahunajaran" class="form-control" value="{{$Kelassiswa->tahun_ajaran}}" autofocus required maxlength="20">
     </div>
     
-    <div class="form-group">
+    <div id="div-kelas" class="form-group">
         <label>Kelas</label>
-        <select class="form-control" name="kelassiswa" id="kelassiswa" autofocus required value="{{$Kelassiswa->kelassiswa}}">
-            <option value="X"@if ($Kelassiswa->kelassiswa=='X')
-                selected @endif>X</option>
-            <option value="XI"@if ($Kelassiswa->kelassiswa=='XI')
-                selected @endif>XI</option>
-            <option value="XII"@if ($Kelassiswa->kelassiswa=='XII')
-                selected @endif>XII</option>
+        <select class="form-control" name="kelas" id="kelas" autofocus required>
+          @foreach ( $Kelas as $kelas )
+          <option selected disabled hidden>-- Pilih Kelas --</option>
+          <option value="{{$kelas->kelas}}">{{$kelas->kelas}}</option>
+          @endforeach
         </select>
-    </div>
+      </div>
     
     <div class="form-group">
         <label>Nama Kelas</label>

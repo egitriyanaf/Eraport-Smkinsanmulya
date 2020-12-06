@@ -3,12 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Models\Siswa;
 class LaporanController extends Controller
 {
     public function indexlaporansiswa()
     {
-        return view('/laporan.indexlaporansiswa');
+        $siswa=Siswa::paginate(10);
+        return view('/laporan.indexlaporansiswa', ['Siswa'=>$siswa]);
     }
 
     public function indexlaporanguru()

@@ -80,20 +80,32 @@
                 <nav class="sidebar-nav left-sidebar-menu-pro">
                     <ul class="metismenu" id="menu1">
                         //navigasi admin
-                        <li>
+                        <li @if (Auth::User()->role == "Admin") 
+                            style="display: block"
+                        @else
+                            style="display: none"
+                        @endif>
                             <a class="has-arrow" href="#" aria-expanded="false"><span class="educate-icon educate-apps icon-wrap"></span> <span class="mini-click-non">User</span></a>
                             <ul class="submenu-angle" aria-expanded="false">
                                 <li><a title="User" href="{{url('/user')}}"><span class="mini-sub-pro">Management User</span></a></li>
                             </ul>
                         </li>
-                        <li>
-                            <a class="has-arrow" href="#" aria-expanded="false"><span class="educate-icon educate-department icon-wrap"></span> <span class="mini-click-non">Personil</span></a>
+                        <li @if (Auth::User()->role == "Admin") 
+                            style="display: block"
+                        @else
+                            style="display: none"
+                        @endif>
+                            <a class="has-arrow" href="#" aria-expanded="false"><span class="educate-icon educate-department icon-wrap"></span> <span class="mini-click-non">Personil Sekolah</span></a>
                             <ul class="submenu-angle" aria-expanded="false">
                                 <li><a title="Guru" href="{{url('/guru')}}"><span class="mini-sub-pro">Guru</span></a></li>
                                 <li><a title="Siswa" href="{{url('/siswa')}}"><span class="mini-sub-pro">Siswa</span></a></li>
                             </ul>
                         </li>
-                        <li>
+                        <li @if (Auth::User()->role == "Admin") 
+                            style="display: block"
+                        @else
+                            style="display: none"
+                        @endif>
                             <a class="has-arrow" href="#" aria-expanded="false"><span class="educate-icon educate-course icon-wrap"></span> <span class="mini-click-non">Data Akademik</span></a>
                             <ul class="submenu-angle" aria-expanded="false">
                                 <li><a title="Mata Pelajaran" href="{{url('/matapelajaran')}}"><span class="mini-sub-pro">Mata Pelajaran</span></a></li>
@@ -102,7 +114,11 @@
                                 <li><a title="Nilai" href="{{url('/nilai')}}"><span class="mini-sub-pro">Nilai</span></a></li>
                             </ul>
                         </li>
-                        <li>
+                        <li @if (Auth::User()->role == "Admin") 
+                            style="display: block"
+                        @else
+                            style="display: none"
+                        @endif>
                             <a class="has-arrow" href="#" aria-expanded="false"><span class="educate-icon educate-data-table icon-wrap"></span> <span class="mini-click-non">Cetak Laporan</span></a>
                             <ul class="submenu-angle" aria-expanded="false">
                                 <li><a title="Laporan Siswa" href="{{url('/laporansiswa')}}"><span class="mini-sub-pro">Laporan Siswa</span></a></li>
@@ -112,15 +128,21 @@
                                 <li><a title="Laporan Pelajaran" href="{{url('/laporanpelajaran')}}"><span class="mini-sub-pro">Laporan Pelajaran</span></a></li>
                             </ul>
                         </li>
-                        //navigasi guru
-                        <li>
+                        <li  @if (Auth::User()->role == "Guru") 
+                            style="display: block"
+                        @else
+                            style="display: none"
+                        @endif>
                             <a class="has-arrow" href="#" aria-expanded="false"><span class="educate-icon educate-professor icon-wrap"></span><span class="mini-click-non">Guru</span></a>
                             <ul class="submenu-angle" aria-expanded="false">
                                 <li><a title="Input Nilai Siswa" href="{{url('/inputnilaisiswa')}}"><span class="mini-sub-pro">Input Nilai Siswa</span></a></li>
                             </ul>
                         </li>
-                        //navigasi siswa
-                        <li>
+                        <li  @if (Auth::User()->role == "Siswa") 
+                            style="display: block"
+                        @else
+                            style="display: none"
+                        @endif>
                             <a class="has-arrow" href="#" aria-expanded="false"><span class="educate-icon educate-student icon-wrap"></span> <span class="mini-click-non">Siswa</span></a>
                             <ul class="submenu-angle" aria-expanded="false">
                                 <li><a title="Nilai Raport" href="{{url('/nilairaport')}}"><span class="mini-sub-pro">Nilai Raport</span></a></li>
@@ -174,7 +196,7 @@
                                                 <li class="nav-item">
                                                     <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle">
                                                             <img src="{{asset('/asset/img/product/pro4.jpg')}}" alt="" />
-                                                            <span class="admin-name">{{ Auth::user()->name }}</span>
+                                                            <span class="admin-name">{{ Auth::User()->email }}</span>
                                                             <i class="fa fa-angle-down edu-icon edu-down-arrow"></i>
                                                         </a>
                                                     <ul role="menu" class="dropdown-header-top author-log dropdown-menu animated zoomIn">

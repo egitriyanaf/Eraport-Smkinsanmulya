@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\AdminController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\GuruController;
 use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\MatapelajaranController;
@@ -34,12 +34,12 @@ Auth::routes();
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 //user
-Route::get('/user', [AdminController::class, 'index'])->name('admin.index');
-Route::get('/user/search', [AdminController::class, 'search'])->name('admin.search');
-Route::post('/tambahadmin', [AdminController::class, 'tambahadmin'])->name('admin.tambah');
-Route::get('/editadmin/{id}', [AdminController::class, 'editadmin'])->name('admin.edit');
-Route::patch('/updateadmin/{id}', [AdminController::class, 'updateadmin'])->name('admin.update');
-Route::delete('/deleteadmin/{id}',[AdminController::class, 'deleteadmin'])->name('admin.delete');
+Route::get('/user', [UserController::class, 'index'])->name('user.index');
+Route::get('/user/search', [UserController::class, 'search'])->name('user.search');
+Route::post('/tambahuser', [UserController::class, 'tambahuser'])->name('user.tambah');
+Route::get('/edituser/{id}', [UserController::class, 'edituser'])->name('user.edit');
+Route::patch('/updateuser/{id}', [UserController::class, 'updateuser'])->name('user.update');
+Route::delete('/deleteuser/{id}',[UserController::class, 'deleteuser'])->name('user.delete');
 
 //guru
 Route::get('/guru', [GuruController::class, 'index'])->name('guru.index');

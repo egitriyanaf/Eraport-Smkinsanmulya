@@ -51,8 +51,6 @@ class GuruController extends Controller
                 'telepon' => $request->telepon,
                 'alamat' => $request->alamat,
                 'photo' => $photoname,
-                'email' => $request->email,
-                'password' => Hash::make($request['password'])
                 ]);
             }
             else {
@@ -62,8 +60,6 @@ class GuruController extends Controller
                     'jenis_kelamin' => $request->jeniskelamin,
                     'telepon' => $request->telepon,
                     'alamat' => $request->alamat,
-                    'email' => $request->email,
-                    'password' => Hash::make($request['password'])
                     ]);
             }
         return redirect('/guru')->with('status', 'data berhasil ditambahkan!');
@@ -96,8 +92,6 @@ class GuruController extends Controller
                     'telepon' => $request->telepon,
                     'alamat' => $request->alamat,
                     'photo' => $photoname,
-                    'email' => $request->email,
-                    'password' => Hash::make($request['password'])
             ]);
             } 
             $guru->update([
@@ -106,8 +100,6 @@ class GuruController extends Controller
                 'jenis_kelamin' => $request->jeniskelamin,
                 'telepon' => $request->telepon,
                 'alamat' => $request->alamat,
-                'email' => $request->email,
-                'password' => Hash::make($request['password'])
         ]);
             
         return redirect('/guru')->with('status', 'data berhasil diupdate!');  

@@ -51,7 +51,7 @@ Kelas
                             <thead>
                               <tr>
                                 <th class=" text-center" scope="col">No</th>
-                                <th class=" text-center" scope="col">Kode Kelas</th>
+                                <th class=" text-center" scope="col">ID Kelas</th>
                                 <th class=" text-center" scope="col">Tahun Ajaran</th>
                                 <th class=" text-center" scope="col">Kelas</th>
                                 <th class=" text-center" scope="col">Nama Kelas</th>
@@ -117,12 +117,10 @@ Kelas
       <div class="modal-body">
         <form action="{{ url('/tambahkelas')}}" method="POST" enctype="multipart/form-data">
           @csrf
-          @foreach ($Kelas as $kelas)
           <div class="form-group">
-            <label>Kode Kelas</label>
+            <label>ID Kelas</label>
             <input type="text" name="kodekelas" class="form-control" value="{{$kelas->getkelasIDplus()}}" autofocus readonly>
         </div>
-        @endforeach
           <div class="form-group">
               <label>Tahun Ajaran</label>
               <input type="text" name="tahunajaran" class="form-control" autofocus required maxlength="20">
@@ -130,6 +128,7 @@ Kelas
           <div class="form-group">
               <label>Kelas</label>
               <select class="form-control" name="kelas" id="kelas" autofocus required maxlength="10">
+                  <option selected disabled hidden>--Pilih Kelas--</option>
                   <option value="X">X</option>
                   <option value="XI">XI</option>
                   <option value="XII">XII</option>
@@ -139,9 +138,14 @@ Kelas
             <label>Nama Kelas</label>
             <input type="text" name="namakelas" class="form-control" autofocus required maxlength="30">
         </div>
-        <div class="form-group">
-            <label>Wali Kelas</label>
-            <input type="text" name="walikelas" class="form-control" autofocus required maxlength="60">
+        <div id="div-guru" class="form-group">
+          <label>Wali Kelas</label>
+          <select class="form-control" name="walikelas" id="walikelas" autofocus required>
+            @foreach ( $Guru as $guru )
+            <option selected disabled hidden>-- Pilih Guru --</option>
+            <option value="{{$guru->nama}}">{{$guru->nama}}</option>
+            @endforeach
+          </select>
         </div>
       </div>
       <div class="modal-footer">

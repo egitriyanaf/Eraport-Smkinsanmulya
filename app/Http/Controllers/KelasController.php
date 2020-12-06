@@ -5,14 +5,19 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\Kelas;
+use App\Models\Guru;
 
 class KelasController extends Controller
 {
     public function index()
-    {
-        $kelas=Kelas::paginate(5);
+    {   
+        $guru=Guru::paginate(10);
+        $kelas=Kelas::paginate(10);
         $kelas->useBootstrap();
-        return view('/kelas.index',['Kelas'=>$kelas]);
+        return view('/kelas.index',[
+            'Kelas'=>$kelas,
+            'Guru'=>$guru
+        ]);
     }
 
     public function search(Request $request)
@@ -35,9 +40,12 @@ class KelasController extends Controller
     }
 
     public function editkelas($id)
-    {
+    {   $guru=Guru::All();
         $kelas=Kelas::find($id);
-      return view('/kelas.edit',['Kelas' => $kelas]);
+      return view('/kelas.edit',[
+          'Kelas' => $kelas,
+          'Guru' => $guru
+          ]);
     }
 
     public function updatekelas(Request $request, $id)
@@ -52,7 +60,7 @@ class KelasController extends Controller
          return redirect('/kelas')->with('status', 'data berhasil diupdate!');
     }
 
-    public function deletekelas()
+    public function deletekelas($id)
     {
         $kelas=Kelas::FindOrFail($id);
         $kelas->delete();

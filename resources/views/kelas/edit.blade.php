@@ -46,7 +46,7 @@ Edit Kelas
     @method('patch')
     @csrf
     <div class="form-group">
-        <label>Kode Kelas</label>
+        <label>ID Kelas</label>
         <input type="text" name="id" class="form-control" value="{{$Kelas->getkelasID()}}" readonly>
     </div>
     <div class="form-group">
@@ -70,11 +70,15 @@ Edit Kelas
         <label>Nama Kelas</label>
         <input type="text" name="namakelas" class="form-control" value="{{$Kelas->nama_kelas}}" autofocus required maxlength="30">
     </div>
-    
-    <div class="form-group">
+    <div id="div-guru" class="form-group">
         <label>Wali Kelas</label>
-        <input type="text" name="walikelas" class="form-control" value="{{$Kelas->wali_kelas}}" autofocus required maxlength="60">
-    </div>
+        <select class="form-control" name="walikelas" id="walikelas" autofocus required>
+          @foreach ( $Guru as $guru )
+          <option selected disabled hidden>-- Pilih Guru --</option>
+          <option value="{{$guru->nama}}">{{$guru->nama}}</option>
+          @endforeach
+        </select>
+      </div>
     
 </div>
 <div class="modal-footer">

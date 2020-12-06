@@ -5,14 +5,24 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\Kelassiswa;
+use App\Models\Siswa;
+use App\Models\Guru;
+use App\Models\Kelas;
 
 class KelassiswaController extends Controller
 {
     public function index()
-    {
-        $kelassiswa=Kelassiswa::paginate(5);
+    {   $kelas=Kelas::All();
+        $guru=Guru::All();
+        $siswa=Siswa::All();
+        $kelassiswa=Kelassiswa::paginate(10);
         $kelassiswa->useBootstrap();
-        return view('/kelassiswa.index',['Kelassiswa'=>$kelassiswa]);
+        return view('/kelassiswa.index',[
+            'Kelassiswa'=>$kelassiswa,
+            'Kelas'=>$kelas,
+            'Guru'=>$guru,
+            'Siswa'=>$siswa,
+            ]);
     }
 
     public function search(Request $request)
@@ -26,8 +36,8 @@ class KelassiswaController extends Controller
     public function tambahkelassiswa(Request $request)
     {
         Kelassiswa::create([
-            'nis'=> $request->nis,
-            'nama'=> $request->nama,
+            'nis'=> $request->nisnama,
+            'nama'=> $request->nisnama,
             'jurusan'=> $request->jurusan,
             'tahun_ajaran'=> $request->tahunajaran,
             'kelas'=> $request->kelas,
@@ -38,17 +48,24 @@ class KelassiswaController extends Controller
     }
 
     public function editkelassiswa($id)
-    {
+    {   $kelas=Kelas::All();
+        $guru=Guru::All();
+        $siswa=Siswa::All();
         $kelassiswa=Kelassiswa::find($id);
-      return view('/kelassiswa.edit',['Kelassiswa' => $kelassiswa]);
+      return view('/kelassiswa.edit',[
+          'Kelas' => $kelas,
+          'Kelassiswa' => $kelassiswa,
+          'Guru' => $guru,
+          'Siswa' => $siswa
+          ]);
     }
 
     public function updatekelassiswa(Request $request, $id)
     {
         $kelassiswa=Kelassiswa::FindOrFail($id);
         $kelassiswa->update([
-            'nis'=> $request->nis,
-            'nama'=> $request->nama,
+            'nis'=> $request->nisnama,
+            'nama'=> $request->nisnama,
             'jurusan'=> $request->jurusan,
             'tahun_ajaran'=> $request->tahunajaran,
             'kelas'=> $request->kelas,
@@ -58,7 +75,7 @@ class KelassiswaController extends Controller
          return redirect('/kelassiswa')->with('status', 'data berhasil diupdate!');
     }
 
-    public function deletekelassiswa()
+    public function deletekelassiswa($id)
     {
         $kelassiswa=Kelassiswa::FindOrFail($id);
         $kelassiswa->delete();

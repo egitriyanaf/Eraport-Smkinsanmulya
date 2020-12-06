@@ -57,7 +57,6 @@ Management Guru
                                 <th class=" text-center" scope="col">Jenis Kelamin</th>
                                 <th class=" text-center" scope="col">Telepon</th>
                                 <th class=" text-center" scope="col">Photo</th>
-                                <th class=" text-center" scope="col">Email</th>
                                 <th class=" text-center" scope="col">Aksi</th>
                               </tr>
                             </thead>
@@ -70,7 +69,6 @@ Management Guru
                                 <td class=" text-center" scope="row">{{ $guru->jenis_kelamin }}</td>
                                 <td class=" text-center" scope="row">{{ $guru->telepon }}</td>
                                 <td class=" text-center" scope="row"><img width="40px" height="60px" src="{{ url('/storage/avatar guru/'.$guru->photo) }}"></td>
-                                <td class=" text-center" scope="row">{{ $guru->email }}</td>
                                 <td scope="row" class=" text-center">
                                   <a href="{{url('/editguru/'.$guru->id)}}"><button type="button" class="btn btn-warning" data-toggle="modal" data-target="#editModal"><i class="fa fa-edit">
                                     Edit
@@ -122,7 +120,7 @@ Management Guru
           @csrf
           <div class="form-group">
             <label>Id Guru</label>
-            <input type="text" name="Id" class="form-control" autofocus value="{{$guru->id+1}}" readonly>
+            <input type="text" name="Id" class="form-control" autofocus value="{{$guru->getguruIDplus()}}" readonly>
         </div>
           <div class="form-group">
               <label>NIP</label>
@@ -151,14 +149,6 @@ Management Guru
                 <label for="uploadphoto">Upload Photo</label>
                 <input type="file" name="photo" class="form-control-file" id="uploadphoto">
               </div>
-          <div class="form-group">
-              <label>Email</label>
-              <input type="email" name="email" id="email" class="form-control" maxlength="25" autofocus required>
-          </div>
-          <div class="form-group">
-            <label>Password</label>
-            <input type="password" name="password" id="password" class="form-control" maxlength="25" autofocus required>
-        </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>

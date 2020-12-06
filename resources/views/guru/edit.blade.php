@@ -46,7 +46,7 @@
     @csrf
     <div class="form-group">
         <label>Id guru</label>
-        <input type="text" name="nip" class="form-control" value="{{$Guru->id}}" readonly>
+        <input type="text" name="nip" class="form-control" value="{{$Guru->getguruID()}}" readonly>
     </div>
     <div class="form-group">
         <label>NIP</label>
@@ -77,14 +77,6 @@
           <label for="uploadphoto">Upload Photo</label>
           <input type="file" name="photo" class="form-control-file" id="uploadphoto">{{$Guru->photo}} 
         </div>
-    <div class="form-group">
-        <label>Email</label>
-        <input type="email" name="email" id="email" class="form-control"  value="{{$Guru->email}}" autofocus required>
-    </div>
-    <div class="form-group">
-        <label>Password</label>
-        <input type="password" name="password" id="password" class="form-control"  value="{{$Guru->password}}" autofocus required>
-    </div>
 </div>
 <div class="modal-footer">
     <a href="{{url('/guru')}}" class="btn btn-secondary">Tutup</a>

@@ -121,43 +121,58 @@ Kelas Siswa
       <div class="modal-body">
         <form action="{{url('/tambahkelassiswa')}}" method="POST" enctype="multipart/form-data">
           @csrf
-          
-          <div class="form-group">
-            <label>Kode Data Kelas Siswa</label>
-            <input type="text" name="kodekelassiswa" class="form-control" value="{{$kelassiswa->getkelassiswaIDplus()}}" autofocus readonly>
-        </div>
-        
         <div class="form-group">
-          <label>NIS</label>
-          <input type="text" name="nis" class="form-control" autofocus required maxlength="15">
-      </div>
-      <div class="form-group">
-        <label>Nama Siswa</label>
-        <input type="text" name="nama" class="form-control" autofocus required maxlength="30">
-    </div>
+            <label>ID Data Kelas Siswa</label>
+            <input type="text" name="id" class="form-control" value="{{$kelassiswa->getkelassiswaIDplus()}}" autofocus readonly>
+        </div>
+        <div id="div-nis" class="form-group">
+          <label>Siswa</label>
+          <select class="form-control" name="nis" id="nis" autofocus required>
+            @foreach ( $Siswa as $siswa )
+            <option selected disabled hidden>-- Pilih Nis --</option>
+            <option value="{{$siswa->id}}">({{$siswa->nis}}) {{$siswa->nama}}</option>
+            @endforeach
+          </select>
+        </div>
     <div class="form-group">
       <label>Jurusan</label>
       <input type="text" name="jurusan" class="form-control" autofocus required maxlength="60">
   </div>
-      <div class="form-group">
-        <label>Tahun Ajaran</label>
-        <input type="text" name="tahunajaran" class="form-control" autofocus required>
-    </div>
-    <div class="form-group">
-      <label>Kelas</label>
-      <select class="form-control" name="kelas" id="kelas" autofocus required maxlength="10">
-          <option value="X">X</option>
-          <option value="XI">XI</option>
-          <option value="XII">XII</option>
+  <div id="div-tahunajaran" class="form-group">
+    <label>Tahun Ajaran</label>
+    <select class="form-control" name="tahunajaran" id="tahunajaran" autofocus required>
+      @foreach ( $Kelas as $kelas )
+      <option selected disabled hidden>-- Pilih Tahun Ajaran --</option>
+      <option value="{{$kelas->tahun_ajaran}}">{{$kelas->tahun_ajaran}}</option>
+      @endforeach
+    </select>
+  </div>
+  <div id="div-kelas" class="form-group">
+    <label>Kelas</label>
+    <select class="form-control" name="kelas" id="kelas" autofocus required>
+      @foreach ( $Kelas as $kelas )
+      <option selected disabled hidden>-- Pilih Kelas --</option>
+      <option value="{{$kelas->kelas}}">{{$kelas->kelas}}</option>
+      @endforeach
+    </select>
+  </div>
+  <div id="div-namakelas" class="form-group">
+    <label>Nama Kelas</label>
+    <select class="form-control" name="namakelas" id="namakelas" autofocus required>
+      @foreach ( $Kelas as $kelas )
+      <option selected disabled hidden>-- Pilih Kelas --</option>
+      <option value="{{$kelas->nama_kelas}}">{{$kelas->nama_kelas}}</option>
+      @endforeach
+    </select>
+  </div>
+    <div id="div-guru" class="form-group">
+      <label>Nama Wali Kelas</label>
+      <select class="form-control" name="walikelas" id="walikelas" autofocus required>
+        @foreach ( $Guru as $guru )
+        <option selected disabled hidden>-- Pilih Guru --</option>
+        <option value="{{$guru->nama}}">{{$guru->nama}}</option>
+        @endforeach
       </select>
-    </div>
-    <div class="form-group">
-      <label>Nama Kelas</label>
-      <input type="text" name="namakelas" class="form-control" autofocus required maxlength="30">
-    </div>
-    <div class="form-group">
-      <label>Wali Kelas</label>
-      <input type="text" name="walikelas" class="form-control" autofocus required maxlength="60">
     </div>
       </div>
       <div class="modal-footer">

@@ -46,7 +46,7 @@ Edit Mata Pelajaran
     @method('patch')
     @csrf
     <div class="form-group">
-        <label>Kode Pelajaran</label>
+        <label>ID Mata Pelajaran</label>
         <input type="text" name="kodepelajaran" class="form-control" value="{{$Matapelajaran->getmatapelajaranID()}}" readonly>
     </div>
     <div class="form-group">

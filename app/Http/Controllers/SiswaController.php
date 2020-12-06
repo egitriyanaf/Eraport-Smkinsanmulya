@@ -40,9 +40,9 @@ class SiswaController extends Controller
             $file= $request->file('photo')->getClientOriginalName();
             $filename= pathinfo($file, PATHINFO_FILENAME);
             $fileextension= pathinfo($file, PATHINFO_EXTENSION);
-            $photoname = 'foto-guru'.'_'.$temp_id.'.'.$fileextension;
+            $photoname = 'foto-siswa'.'_'.$temp_id.'.'.$fileextension;
             $path = $photo->storeAs(
-                'avatar guru', $photoname, 'public'
+                'avatar siswa', $photoname, 'public'
             ); 
         Siswa::create([
                 'nis' => $request->nis,
@@ -55,8 +55,6 @@ class SiswaController extends Controller
                 'agama'=>$request->agama,
                 'alamat'=>$request->alamat,
                 'tahun_angkatan'=>$request->tahunangkatan,
-                'email' => $request->email,
-                'password' => Hash::make($request['password'])
                 ]);
             }
             else {
@@ -70,8 +68,6 @@ class SiswaController extends Controller
                     'agama'=>$request->agama,
                     'alamat'=>$request->alamat,
                     'tahun_angkatan'=>$request->tahunangkatan,
-                    'email' => $request->email,
-                    'password' => Hash::make($request['password'])
                     ]);
             }
         return redirect('/siswa')->with('status', 'data berhasil ditambahkan!');
@@ -108,8 +104,6 @@ class SiswaController extends Controller
                     'agama'=>$request->agama,
                     'alamat'=>$request->alamat,
                     'tahun_angkatan'=>$request->tahunangkatan,
-                    'email' => $request->email,
-                    'password' => Hash::make($request['password'])
             ]);
             } 
             $siswa->update([
@@ -122,8 +116,6 @@ class SiswaController extends Controller
                 'agama'=>$request->agama,
                 'alamat'=>$request->alamat,
                 'tahun_angkatan'=>$request->tahunangkatan,
-                'email' => $request->email,
-                'password' => Hash::make($request['password'])
         ]);
             
         return redirect('/siswa')->with('status', 'data berhasil diupdate!');  

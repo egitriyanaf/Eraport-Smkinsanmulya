@@ -47,7 +47,7 @@ Edit Siswa
     @csrf
     <div class="form-group">
         <label>Id siswa</label>
-        <input type="text" name="id" class="form-control" value="{{$Siswa->id}}" readonly>
+        <input type="text" name="id" class="form-control" value="{{$Siswa->getsiswaID()}}" readonly>
     </div>
     <div class="form-group">
         <label>Nomor Induk Siswa</label>
@@ -94,14 +94,6 @@ Edit Siswa
             <label>Tahun Angkatan</label>
             <input type="text" name="tahunangkatan" id="tahunangkatan" class="form-control" value="{{$Siswa->tahun_angkatan}}" maxlength="30" autofocus required>
         </div>
-    <div class="form-group">
-        <label>Email</label>
-        <input type="email" name="email" id="email" class="form-control"  value="{{$Siswa->email}}" autofocus required>
-    </div>
-    <div class="form-group">
-        <label>Password</label>
-        <input type="password" name="password" id="password" class="form-control"  value="{{$Siswa->password}}" autofocus required>
-    </div>
 </div>
 <div class="modal-footer">
     <a href="{{url('/siswa')}}" class="btn btn-secondary">Tutup</a>

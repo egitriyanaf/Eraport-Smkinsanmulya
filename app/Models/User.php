@@ -52,4 +52,15 @@ class User extends Authenticatable
     {
         return sprintf('user-%03d', $this->id+1);
     }
+
+    public function getKodeIdPersonil(String $id, String $role, String $id_personil) {
+        if ($role == "Guru") {
+            $id_personil = "Guru-".$id_personil;
+        } else if ($role == "Siswa") {
+            $id_personil = "Siswa-".$id_personil; 
+        } else {
+            $id_personil = "Admin-".$id;
+        }
+        return $id_personil;
+    }
 }
