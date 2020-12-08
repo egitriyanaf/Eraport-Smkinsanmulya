@@ -37,64 +37,56 @@ Edit Kelas Siswa
   }, 1000);
 </script>
 @endif
-    </div>
 </div>
-
-<!--Modal Edit-->
-<div class="modal-body">
-  <form action="{{ url('updatekelassiswa/'.$Kelassiswa->id)}}" method="POST" enctype="multipart/form-data">
-    @method('patch')
-    @csrf
-    <div class="form-group">
-        <label>Kode Data Kelas Siswa</label>
-        <input type="text" name="id" class="form-control" value="{{$Kelassiswa->getkelassiswaID()}}" readonly>
-    </div>
-    <div class="form-group">
-        <label>NIS</label>
-        <input type="text" name="nis" class="form-control" value="{{$Kelassiswa->nis}}" autofocus required maxlength="15">
-    </div>
-    <div class="form-group">
-      <label>Nama Siswa</label>
-      <input type="text" name="nama" class="form-control" value="{{$Kelassiswa->nama}}" autofocus required maxlength="30">
-  </div>
-  <div class="form-group">
-    <label>Jurusan</label>
-    <input type="text" name="jurusan" class="form-control" value="{{$Kelassiswa->jurusan}}" autofocus required maxlength="60">
 </div>
-    <div class="form-group">
-        <label>Tahun Ajaran</label>
-        <input type="text" name="tahunajaran" class="form-control" value="{{$Kelassiswa->tahun_ajaran}}" autofocus required maxlength="20">
+        <div class="modal-body">
+          <form action="{{url('/updatekelassiswa/'.$Kelassiswa->id)}}" method="POST" enctype="multipart/form-data">
+            @csrf
+            @method('patch')
+          <div class="form-group">
+              <label>ID Data Kelas Siswa</label>
+              <input type="text" name="id" class="form-control" value="{{$Kelassiswa->getkelassiswaID()}}" autofocus readonly>
+          </div>
+          <div id="div-siswa" class="form-group">
+            <label>Siswa</label>
+            <select class="form-control" name="siswa" id="siswa" autofocus required>
+              @foreach ( $Siswa as $siswa )
+              <option selected disabled hidden>-- Pilih Nis --</option>
+              <option value="{{$siswa->id}}">({{$siswa->nis}}) {{$siswa->nama}}</option>
+              @endforeach
+            </select>
+          </div>
+      <div class="form-group">
+        <label>Jurusan</label>
+        <input type="text" name="jurusan" class="form-control" value="{{$Kelassiswa->jurusan}}" autofocus required maxlength="60">
     </div>
-    
     <div id="div-kelas" class="form-group">
-        <label>Kelas</label>
-        <select class="form-control" name="kelas" id="kelas" autofocus required>
-          @foreach ( $Kelas as $kelas )
-          <option selected disabled hidden>-- Pilih Kelas --</option>
-          <option value="{{$kelas->kelas}}">{{$kelas->kelas}}</option>
+      <label>Kelas</label>
+      <select class="form-control" name="kelas" id="kelas" autofocus required>
+        @foreach ( $Kelas as $kelas )
+        <option selected disabled hidden>-- Pilih Kelas --</option>
+        <option value="{{$kelas->id}}">{{$kelas->tahun_ajaran}} - {{$kelas->kelas}} - {{$kelas->nama_kelas}}</option>
+        @endforeach
+      </select>
+    </div>
+      <div id="div-guru" class="form-group">
+        <label>Nama Wali Kelas</label>
+        <select class="form-control" name="walikelas" id="walikelas" autofocus required>
+          @foreach ( $Guru as $guru )
+          <option selected disabled hidden>-- Pilih Guru --</option>
+          <option value="{{$guru->id}}">{{$guru->nama}}</option>
           @endforeach
         </select>
       </div>
-    
-    <div class="form-group">
-        <label>Nama Kelas</label>
-        <input type="text" name="namakelas" class="form-control" value="{{$Kelassiswa->nama_kelas}}" autofocus required maxlength="30">
+        </div>
+        <div class="modal-footer">
+            <a href="{{url('/kelassiswa')}}" class="btn btn-secondary">Tutup</a>
+          <button type="submit" class="btn btn-primary">Simpan</button>
+        </div>
+      </form>
+      </div>
     </div>
-    
-    <div class="form-group">
-        <label>Wali Kelas</label>
-        <input type="text" name="walikelas" class="form-control" value="{{$Kelassiswa->wali_kelas}}" autofocus required maxlength="60">
-    </div>
-    
-</div>
-<div class="modal-footer">
-    <a href="{{url('/kelassiswa')}}" class="btn btn-secondary">Tutup</a>
-    <button type="submit" class="btn btn-primary">Simpan</button>
-  </div>
-    </form>
-    </div>
-  </div>
-</div>
+  </div> 
 @endsection
 @section('footer')
 <div class="footer-copyright-area">

@@ -10,13 +10,10 @@ class Kelassiswa extends Model
     protected $table='kelassiswa';
     protected $primarykey='id';
     protected $fillable = [
-        'nis',
-        'nama',
+        'id_siswa',
         'jurusan',
-        'tahun_ajaran',
-        'kelas',
-        'nama_kelas',
-        'wali_kelas',
+        'id_kelas',
+        'id_guru',
         'created_at',
         'updated_at'
     ];

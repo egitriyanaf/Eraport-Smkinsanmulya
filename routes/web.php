@@ -83,6 +83,11 @@ Route::delete('/deletekelassiswa/{id}',[KelassiswaController::class, 'deletekela
 
 //nilai
 Route::get('/nilai', [NilaiController::class, 'index'])->name('nilai.index');
+Route::get('/nilai/search', [NilaiController::class, 'search'])->name('nilai.search');
+Route::post('/tambahnilai', [NilaiController::class, 'tambahnilai'])->name('nilai.tambah');
+Route::get('/editnilai/{id}', [NilaiController::class, 'editnilai'])->name('nilai.edit');
+Route::patch('/updatenilai/{id}', [NilaiController::class, 'updatenilai'])->name('nilai.update');
+Route::delete('/deletenilai/{id}',[NilaiController::class, 'deletenilai'])->name('nilai.delete');
 
 //nilaisiswa
 Route::get('/inputnilaisiswa', [InputnilaisiswaController::class, 'index'])->name('inputnilaisiswa.index');

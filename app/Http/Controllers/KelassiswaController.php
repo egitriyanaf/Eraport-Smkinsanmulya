@@ -36,13 +36,10 @@ class KelassiswaController extends Controller
     public function tambahkelassiswa(Request $request)
     {
         Kelassiswa::create([
-            'nis'=> $request->nisnama,
-            'nama'=> $request->nisnama,
+            'id_siswa'=> $request->siswa,
+            'id_kelas'=> $request->kelas,
             'jurusan'=> $request->jurusan,
-            'tahun_ajaran'=> $request->tahunajaran,
-            'kelas'=> $request->kelas,
-            'nama_kelas'=> $request->namakelas,
-            'wali_kelas' => $request->walikelas
+            'id_guru' => $request->walikelas
             ]);
         return redirect('/kelassiswa')->with('status', 'data berhasil ditambahkan!');
     }
@@ -64,13 +61,10 @@ class KelassiswaController extends Controller
     {
         $kelassiswa=Kelassiswa::FindOrFail($id);
         $kelassiswa->update([
-            'nis'=> $request->nisnama,
-            'nama'=> $request->nisnama,
+            'id_siswa'=> $request->siswa,
+            'id_kelas'=> $request->kelas,
             'jurusan'=> $request->jurusan,
-            'tahun_ajaran'=> $request->tahunajaran,
-            'kelas'=> $request->kelas,
-            'nama_kelas'=> $request->namakelas,
-            'wali_kelas' => $request->walikelas       
+            'id_guru' => $request->walikelas     
             ]);
          return redirect('/kelassiswa')->with('status', 'data berhasil diupdate!');
     }

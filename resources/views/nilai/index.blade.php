@@ -64,23 +64,23 @@ Nilai
                               </tr>
                             </thead>
                             <tbody>
-                                
+                                @foreach ($Nilai as $key => $nilai)
                               <tr>
-                                <th class=" text-center" scope="row">belom</th>
-                                <td scope="row" class="text-center">belom</td>
-                                <td scope="row" class="text-center">belom</td>
-                                <td scope="row" class="text-center">belom</td>
-                                <td scope="row" class="text-center">belom</td>
-                                <td scope="row" class="text-center">belom</td>
-                                <td scope="row" class="text-center">belom</td>
-                                <td scope="row" class="text-center">belom</td>
-                                <td scope="row" class="text-center">belom</td>
-                                <td scope="row" class="text-center">belom</td>
+                                <th class=" text-center" scope="row">{{$Nilai->firstItem()+ $key}}</th>
+                                <td scope="row" class="text-center">{{$nilai->id_siswa}}</td>
+                                <td scope="row" class="text-center">{{$nilai->id_siswa}}</td>
+                                <td scope="row" class="text-center">{{$nilai->semester}}</td>
+                                <td scope="row" class="text-center">{{$nilai->id_matapelajaran}}</td>
+                                <td scope="row" class="text-center">{{$nilai->tugas_1}}</td>
+                                <td scope="row" class="text-center">{{$nilai->tugas_2}}</td>
+                                <td scope="row" class="text-center">{{$nilai->tugas_3}}</td>
+                                <td scope="row" class="text-center">{{$nilai->uts}}</td>
+                                <td scope="row" class="text-center">{{$nilai->uas}}</td>
                                 <td scope="row" class=" text-center">
-                                  <a href="#"><button type="button" class="btn btn-warning" data-toggle="modal" data-target="#editModal"><i class="fa fa-edit">
+                                  <a href="{{url('/editnilai/'.$nilai->id)}}"><button type="button" class="btn btn-warning" data-toggle="modal" data-target="#editModal"><i class="fa fa-edit">
                                     Edit
                                   </i></button></a>
-                                    <form action="#" method="POST" class="d-inline" onsubmit="return confirm('Apakah yakin data ini ingin di hapus?')">
+                                    <form action="{{url('/deletenilai/'.$nilai->id)}}" method="POST" class="d-inline" onsubmit="return confirm('Apakah yakin data ini ingin di hapus?')">
                                         @method('delete')
                                         @csrf
                                         <button class="btn btn-danger btn-sm">
@@ -90,7 +90,7 @@ Nilai
                                 </td>
                               </tr>
                             </tbody>
-                            {{--  @endforeach  --}}
+                            @endforeach
                         </table>
                     </div>
                     </div>
@@ -99,48 +99,82 @@ Nilai
         </div>
         <div class="fa-pull-left">
             Menampilkan
-            {{--  {{$Kelassiswa->firstItem()}}  --}} belom
+            {{$Nilai->firstItem()}} 
             sampai
-            {{--  {{$Kelassiswa->lastItem()}}  --}} belom
+            {{$Nilai->lastItem()}} 
             dari
-            {{--  {{$Kelassiswa->total()}}  --}} belom
+            {{$Nilai->total()}} 
             total data
           </div>
           <div class="fa-pull-right">
-            {{--  {{$Kelassiswa->links()}}  --}} belom
+            {{$Nilai->links()}} 
           </div>
     </div>
 </div>
 
-{{--  <!-- Modal Tambah -->
+<!-- Modal Tambah -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Tambah Data Kelas</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Tambah Data Nilai</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        <form action="#" method="POST" enctype="multipart/form-data">
+        <form action="/tambahnilai" method="POST" enctype="multipart/form-data">
           @csrf
           <div class="form-group">
-            <label>Kode Data Kelas</label>
-            <input type="text" name="kodekelas" class="form-control" autofocus readonly>
+            <label>ID nilai</label>
+            <input type="text" name="id" class="form-control" value="{{$nilai->getnilaiIDplus()}}"  autofocus readonly>
         </div>
-          <div class="form-group">
-              <label>Nama Kelas</label>
-              <input type="text" name="Nama Kelas" class="form-control" autofocus required maxlength="30">
-          </div>
-          <div class="form-group">
-              <label>Jurusan</label>
-              <input type="text" name="Jurusan" class="form-control" autofocus required maxlength="30">
-          </div>
-          <div class="form-group">
-            <label>Nama Siswa</label>
-            <input type="text" name="namakelas" class="form-control" autofocus required>
+        <div id="div-siswa" class="form-group">
+          <label>Siswa</label>
+          <select class="form-control" name="siswa" id="siswa" autofocus required>
+            @foreach ( $Siswa as $siswa )
+            <option selected disabled hidden>-- Pilih Siswa --</option>
+            <option value="{{$siswa->id}}">{{$siswa->nis}} - {{$siswa->nama}}</option>
+            @endforeach
+          </select>
         </div>
+        <div id="div-semester" class="form-group">
+          <label>Semester</label>
+          <select class="form-control" name="semester" id="semester" autofocus required>
+            <option selected disabled hidden>-- Pilih Semester --</option>
+            <option value="Genap">Genap</option>
+            <option value="Ganjil">Ganjil</option>
+          </select>
+        </div>
+        <div id="div-matapelajaran" class="form-group">
+          <label>Mata Pelajaran</label>
+          <select class="form-control" name="matapelajaran" id="matapelajaran" autofocus required>
+            @foreach ( $Matapelajaran as $matapelajaran )
+            <option selected disabled hidden>-- Pilih Siswa --</option>
+            <option value="{{$matapelajaran->id}}">{{$matapelajaran->nama_pelajaran}}</option>
+            @endforeach
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Tugas 1</label>
+          <input type="text" name="tugas1" class="form-control" maxlength="3" autofocus>
+      </div>
+        <div class="form-group">
+          <label>Tugas 2</label>
+          <input type="text" name="tugas2" class="form-control" maxlength="3" autofocus>
+      </div>
+        <div class="form-group">
+          <label>Tugas 3</label>
+          <input type="text" name="tugas3" class="form-control" maxlength="3" autofocus>
+      </div>
+        <div class="form-group">
+          <label>UTS</label>
+          <input type="text" name="uts" class="form-control" maxlength="3" autofocus>
+      </div>
+        <div class="form-group">
+          <label>UAS</label>
+          <input type="text" name="uas" class="form-control" maxlength="3" autofocus>
+      </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
@@ -149,11 +183,10 @@ Nilai
     </form>
     </div>
   </div>
-</div>  --}}
+</div>
 @endsection
 
 @section('footer')
-
 <div class="footer-copyright-area">
     <div class="container-fluid">
         <div class="row">

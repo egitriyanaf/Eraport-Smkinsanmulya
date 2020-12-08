@@ -65,13 +65,13 @@ Kelas Siswa
                               @foreach ($Kelassiswa as $key => $kelassiswa)
                               <tr>
                                 <th class=" text-center" scope="row">{{ $Kelassiswa->firstItem()+ $key }}</th>
-                                <td scope="row" class="text-center">{{$kelassiswa->nis}}</td>
-                                <td scope="row" class="text-center">{{$kelassiswa->nama}}</td>
+                                <td scope="row" class="text-center">{{$kelassiswa->id_siswa}}</td>
+                                <td scope="row" class="text-center">{{$kelassiswa->id_siswa}}</td>
                                 <td scope="row" class="text-center">{{$kelassiswa->jurusan}}</td>
-                                <td scope="row" class="text-center">{{$kelassiswa->tahun_ajaran}}</td>
-                                <td scope="row" class="text-center">{{$kelassiswa->kelas}}</td>
-                                <td scope="row" class="text-center">{{$kelassiswa->nama_kelas}}</td>
-                                <td scope="row" class="text-center">{{$kelassiswa->wali_kelas}}</td>
+                                <td scope="row" class="text-center">{{$kelassiswa->id_kelas}}</td>
+                                <td scope="row" class="text-center">{{$kelassiswa->id_kelas}}</td>
+                                <td scope="row" class="text-center">{{$kelassiswa->id_kelas}}</td>
+                                <td scope="row" class="text-center">{{$kelassiswa->id_guru}}</td>
                                 <td scope="row" class=" text-center">
                                   <a href="{{url('/editkelassiswa/'.$kelassiswa->id)}}"><button type="button" class="btn btn-warning" data-toggle="modal" data-target="#editModal"><i class="fa fa-edit">
                                     Edit
@@ -125,9 +125,9 @@ Kelas Siswa
             <label>ID Data Kelas Siswa</label>
             <input type="text" name="id" class="form-control" value="{{$kelassiswa->getkelassiswaIDplus()}}" autofocus readonly>
         </div>
-        <div id="div-nis" class="form-group">
+        <div id="div-siswa" class="form-group">
           <label>Siswa</label>
-          <select class="form-control" name="nis" id="nis" autofocus required>
+          <select class="form-control" name="siswa" id="siswa" autofocus required>
             @foreach ( $Siswa as $siswa )
             <option selected disabled hidden>-- Pilih Nis --</option>
             <option value="{{$siswa->id}}">({{$siswa->nis}}) {{$siswa->nama}}</option>
@@ -138,30 +138,12 @@ Kelas Siswa
       <label>Jurusan</label>
       <input type="text" name="jurusan" class="form-control" autofocus required maxlength="60">
   </div>
-  <div id="div-tahunajaran" class="form-group">
-    <label>Tahun Ajaran</label>
-    <select class="form-control" name="tahunajaran" id="tahunajaran" autofocus required>
-      @foreach ( $Kelas as $kelas )
-      <option selected disabled hidden>-- Pilih Tahun Ajaran --</option>
-      <option value="{{$kelas->tahun_ajaran}}">{{$kelas->tahun_ajaran}}</option>
-      @endforeach
-    </select>
-  </div>
   <div id="div-kelas" class="form-group">
     <label>Kelas</label>
     <select class="form-control" name="kelas" id="kelas" autofocus required>
       @foreach ( $Kelas as $kelas )
       <option selected disabled hidden>-- Pilih Kelas --</option>
-      <option value="{{$kelas->kelas}}">{{$kelas->kelas}}</option>
-      @endforeach
-    </select>
-  </div>
-  <div id="div-namakelas" class="form-group">
-    <label>Nama Kelas</label>
-    <select class="form-control" name="namakelas" id="namakelas" autofocus required>
-      @foreach ( $Kelas as $kelas )
-      <option selected disabled hidden>-- Pilih Kelas --</option>
-      <option value="{{$kelas->nama_kelas}}">{{$kelas->nama_kelas}}</option>
+      <option value="{{$kelas->id}}">{{$kelas->tahun_ajaran}} - {{$kelas->kelas}} - {{$kelas->nama_kelas}}</option>
       @endforeach
     </select>
   </div>
@@ -170,7 +152,7 @@ Kelas Siswa
       <select class="form-control" name="walikelas" id="walikelas" autofocus required>
         @foreach ( $Guru as $guru )
         <option selected disabled hidden>-- Pilih Guru --</option>
-        <option value="{{$guru->nama}}">{{$guru->nama}}</option>
+        <option value="{{$guru->id}}">{{$guru->nama}}</option>
         @endforeach
       </select>
     </div>

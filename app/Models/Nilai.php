@@ -10,13 +10,11 @@ class Nilai extends Model
     protected $table='Nilai';
     protected $primarykey='id';
     protected $fillable = [
-        'nis',
-        'nama',
+        'id_siswa',
         'semester',
-        'mata_pelajaran',
+        'id_matapelajaran',
         'tugas_1',
         'tugas_2',
-        'tugas_3',
         'tugas_3',
         'uts',
         'uas',
