@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Siswa;
+use App\Models\Guru;
+use App\Models\Kelas;
+use App\Models\Nilai;
+use App\Models\Matapelajaran;
 class LaporanController extends Controller
 {
     public function indexlaporansiswa()
@@ -13,22 +17,22 @@ class LaporanController extends Controller
     }
 
     public function indexlaporanguru()
-    {
-        return view('/laporan.indexlaporanguru');
+    {   $guru=Guru::paginate(10);
+        return view('/laporan.indexlaporanguru',['Guru'=>$guru]);
     }
 
     public function indexlaporankelas()
-    {
-        return view('/laporan.indexlaporankelas');
+    {   $kelas=Kelas::paginate(10);
+        return view('/laporan.indexlaporankelas',['Kelas'=>$kelas]);
     }
 
     public function indexlaporannilai()
-    {
-        return view('/laporan.indexlaporannilai');
+    {   $nilai=Nilai::paginate(10);
+        return view('/laporan.indexlaporannilai',['Nilai'=>$nilai]);
     }
 
     public function indexlaporanpelajaran()
-    {
-        return view('/laporan.indexlaporanpelajaran');
+    {   $matapelajaran=Matapelajaran::paginate(10);
+        return view('/laporan.indexlaporanpelajaran',['Matapelajaran'=>$matapelajaran]);
     }
 }
