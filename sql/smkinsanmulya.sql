@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 08, 2020 at 08:39 AM
+-- Generation Time: Dec 09, 2020 at 03:11 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.6
 
@@ -60,7 +60,9 @@ CREATE TABLE `guru` (
 --
 
 INSERT INTO `guru` (`id`, `nip`, `nama`, `jenis_kelamin`, `telepon`, `alamat`, `photo`, `created_at`, `updated_at`) VALUES
-(21, '1616611117', 'Rifky Nur rahman', 'Laki-laki', '0822992366', 'tangerang', 'foto-guru_21.jpg', '2020-12-01 04:49:16', '2020-12-01 04:50:48');
+(21, '1616611117', 'Rifky Nur rahman', 'Laki-laki', '0822992366', 'tangerang', 'foto-guru_21.jpg', '2020-12-01 04:49:16', '2020-12-01 04:50:48'),
+(23, '1887894789', 'Tata Endeh', 'Perempuan', '08229937898', 'Tangerang', 'foto-guru_22.jpg', '2020-12-08 09:18:00', '2020-12-08 09:18:00'),
+(24, '123456666', 'azizah', 'Perempuan', '0981762776', 'tigaraksa', NULL, '2020-12-08 22:34:51', '2020-12-08 22:34:51');
 
 -- --------------------------------------------------------
 
@@ -73,7 +75,7 @@ CREATE TABLE `kelas` (
   `tahun_ajaran` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
   `kelas` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
   `nama_kelas` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `wali_kelas` varchar(60) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `guru_id` bigint(20) UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -82,9 +84,10 @@ CREATE TABLE `kelas` (
 -- Dumping data for table `kelas`
 --
 
-INSERT INTO `kelas` (`id`, `tahun_ajaran`, `kelas`, `nama_kelas`, `wali_kelas`, `created_at`, `updated_at`) VALUES
-(1, '2020/2021', 'X', 'B', 'Rifky Nur rahman', '2020-12-02 20:37:02', '2020-12-05 23:33:29'),
-(3, '2020/2021', 'X', 'A', 'Rifky Nur rahman', '2020-12-06 07:50:12', '2020-12-06 07:50:12');
+INSERT INTO `kelas` (`id`, `tahun_ajaran`, `kelas`, `nama_kelas`, `guru_id`, `created_at`, `updated_at`) VALUES
+(4, '2020/2021', 'X', 'A', 21, '2020-12-08 07:48:23', '2020-12-08 07:48:23'),
+(6, '2020/2021', 'X', 'C', 24, '2020-12-08 22:36:09', '2020-12-08 22:36:09'),
+(7, '2020/2021', 'X', 'B', 23, '2020-12-08 22:36:20', '2020-12-08 22:36:20');
 
 -- --------------------------------------------------------
 
@@ -94,10 +97,9 @@ INSERT INTO `kelas` (`id`, `tahun_ajaran`, `kelas`, `nama_kelas`, `wali_kelas`, 
 
 CREATE TABLE `kelassiswa` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `id_siswa` bigint(20) NOT NULL,
+  `siswa_id` bigint(20) UNSIGNED NOT NULL,
   `jurusan` varchar(60) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `id_kelas` bigint(20) NOT NULL,
-  `id_guru` bigint(20) NOT NULL,
+  `kelas_id` bigint(20) UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -106,8 +108,10 @@ CREATE TABLE `kelassiswa` (
 -- Dumping data for table `kelassiswa`
 --
 
-INSERT INTO `kelassiswa` (`id`, `id_siswa`, `jurusan`, `id_kelas`, `id_guru`, `created_at`, `updated_at`) VALUES
-(4, 6, 'Teknik Komputer Jaringan', 1, 21, '2020-12-08 00:16:24', '2020-12-08 00:25:00');
+INSERT INTO `kelassiswa` (`id`, `siswa_id`, `jurusan`, `kelas_id`, `created_at`, `updated_at`) VALUES
+(5, 9, 'Teknik Komputer Jaringan', 4, '2020-12-08 22:17:02', '2020-12-08 22:17:02'),
+(6, 6, 'Gatau', 7, '2020-12-08 22:37:34', '2020-12-08 22:37:34'),
+(7, 10, 'Teknik Komputer Jaringan', 6, '2020-12-08 22:37:50', '2020-12-08 22:37:50');
 
 -- --------------------------------------------------------
 
@@ -129,8 +133,9 @@ CREATE TABLE `matapelajaran` (
 --
 
 INSERT INTO `matapelajaran` (`id`, `nama_pelajaran`, `keterangan`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Bahasa Indonesia', 'Wajib', NULL, '2020-12-02 01:40:14', '2020-12-02 21:17:00'),
-(2, 'Matematika', 'Wajib', NULL, '2020-12-02 20:21:09', '2020-12-02 20:21:09');
+(1, 'Bahasa Indonesia', 'Wajib', NULL, '2020-12-02 01:40:14', '2020-12-09 00:35:01'),
+(2, 'Matematika', 'Wajib', NULL, '2020-12-02 20:21:09', '2020-12-02 20:21:09'),
+(3, 'Bahasa Inggris', 'Tambahan', NULL, '2020-12-09 00:34:53', '2020-12-09 00:34:53');
 
 -- --------------------------------------------------------
 
@@ -169,9 +174,9 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 
 CREATE TABLE `nilai` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `id_siswa` bigint(20) NOT NULL,
+  `kelassiswa_id` bigint(20) NOT NULL,
   `semester` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `id_matapelajaran` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `matapelajaran_id` bigint(20) UNSIGNED NOT NULL,
   `tugas_1` int(11) NOT NULL,
   `tugas_2` int(11) NOT NULL,
   `tugas_3` int(11) NOT NULL,
@@ -185,8 +190,9 @@ CREATE TABLE `nilai` (
 -- Dumping data for table `nilai`
 --
 
-INSERT INTO `nilai` (`id`, `id_siswa`, `semester`, `id_matapelajaran`, `tugas_1`, `tugas_2`, `tugas_3`, `uts`, `uas`, `created_at`, `updated_at`) VALUES
-(1, 6, 'Genap', '2', 82, 80, 80, 80, 80, '2020-12-07 23:20:38', '2020-12-07 23:57:24');
+INSERT INTO `nilai` (`id`, `kelassiswa_id`, `semester`, `matapelajaran_id`, `tugas_1`, `tugas_2`, `tugas_3`, `uts`, `uas`, `created_at`, `updated_at`) VALUES
+(5, 5, 'Genap', 1, 80, 80, 80, 80, 80, '2020-12-08 23:40:53', '2020-12-08 23:40:53'),
+(6, 6, 'Genap', 2, 80, 80, 80, 80, 80, '2020-12-08 23:42:24', '2020-12-08 23:42:24');
 
 -- --------------------------------------------------------
 
@@ -227,7 +233,9 @@ CREATE TABLE `siswa` (
 --
 
 INSERT INTO `siswa` (`id`, `nis`, `nama`, `jenis_kelamin`, `telepon`, `photo`, `tanggal_lahir`, `tempat_lahir`, `agama`, `alamat`, `tahun_angkatan`, `created_at`, `updated_at`) VALUES
-(6, '1616611117', 'endah amanda', 'Perempuan', '0822992366', 'foto-siswa_6.jpg', '1997-06-02', 'Tangerang', 'Islam', 'Tangerang', '2019/2020', '2020-12-01 21:24:32', '2020-12-01 23:44:23');
+(6, '1616611117', 'endah amanda', 'Perempuan', '0822992366', 'foto-siswa_6.jpg', '1997-06-02', 'Tangerang', 'Islam', 'Tangerang', '2019/2020', '2020-12-01 21:24:32', '2020-12-01 23:44:23'),
+(9, '11111111', 'Yo', 'Laki-laki', '213124', NULL, '1998-12-07', 'Tangerang', 'Islam', 'Tangerang', '2019/2020', '2020-12-08 22:16:46', '2020-12-08 22:16:46'),
+(10, '766377377', 'gundarji', 'Laki-laki', '0877726667', NULL, '1997-12-09', 'Tangerang', 'Islam', 'Tangerang', '2018/2019', '2020-12-08 22:35:48', '2020-12-08 22:35:48');
 
 -- --------------------------------------------------------
 
@@ -254,8 +262,9 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `email`, `email_verified_at`, `password`, `role`, `id_personil`, `remember_token`, `created_at`, `updated_at`) VALUES
 (1, 'rahmat@gmail.com', NULL, '$2y$10$fX4G46ZD3Y9UWbtH4MIsU.7FjZjsmVTDRZ3gsJVOEuKeSESeMo/Ze', 'Admin', 0, NULL, '2020-11-24 00:41:40', '2020-12-05 17:02:13'),
 (14, 'rifky@gmail.com', NULL, '$2y$10$27fSoBFlZIx1G7vKAD/LjueoE8155.mNvCtR1e.ItI0evCTECZDHm', 'Guru', 21, NULL, '2020-12-05 19:32:42', '2020-12-05 19:32:42'),
-(15, 'endah@gmail.com', NULL, '$2y$10$/50Cb5Gjw99ANws9nv6gEegWC//2lR51nK5P2WklXakcMcqSt0odC', 'Siswa', 6, NULL, '2020-12-05 19:32:58', '2020-12-06 08:08:00'),
-(16, 'Azis@gmail.com', NULL, '$2y$10$1okbimvq4nnqHdb5ynk5q.LGf7w9FfDc5/6OfkE42iHXaNfy9ja62', 'Guru', 21, NULL, '2020-12-05 23:24:09', '2020-12-06 08:06:17');
+(15, 'endah@gmail.com', NULL, '$2y$10$xphwb98u0prkss3rGdPk2uYJPOA1QBeTlPOxF55aw3/S6dt6.zSnG', 'Siswa', 6, NULL, '2020-12-05 19:32:58', '2020-12-08 01:19:39'),
+(16, 'Azis@gmail.com', NULL, '$2y$10$1okbimvq4nnqHdb5ynk5q.LGf7w9FfDc5/6OfkE42iHXaNfy9ja62', 'Guru', 21, NULL, '2020-12-05 23:24:09', '2020-12-06 08:06:17'),
+(26, 'away@gmail.com', NULL, '$2y$10$o5AKazwfE9yjdZYdg24LqedCYh.FxJv/nAtY6VXWKG14JjzwRI52S', 'Admin', 0, NULL, '2020-12-09 06:20:10', '2020-12-09 06:20:10');
 
 --
 -- Indexes for dumped tables
@@ -302,7 +311,8 @@ ALTER TABLE `migrations`
 -- Indexes for table `nilai`
 --
 ALTER TABLE `nilai`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `kelassiswa_id` (`kelassiswa_id`);
 
 --
 -- Indexes for table `password_resets`
@@ -337,25 +347,25 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `guru`
 --
 ALTER TABLE `guru`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `kelas`
 --
 ALTER TABLE `kelas`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `kelassiswa`
 --
 ALTER TABLE `kelassiswa`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `matapelajaran`
 --
 ALTER TABLE `matapelajaran`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `migrations`
@@ -367,19 +377,19 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `nilai`
 --
 ALTER TABLE `nilai`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `siswa`
 --
 ALTER TABLE `siswa`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
