@@ -49,9 +49,9 @@ Edit Nilai
             <div id="div-siswa" class="form-group">
             <label>Siswa</label>
             <select class="form-control" name="siswa" id="siswa" autofocus required>
-            @foreach ( $Siswa as $siswa )
+            @foreach ( $Kelassiswa as $kelassiswa )
             <option selected disabled hidden>-- Pilih Siswa --</option>
-            <option value="{{$siswa->id}}">{{$siswa->nis}} - {{$siswa->nama}}</option>
+            <option value="{{$kelassiswa->id}}">{{$kelassiswa->siswa->nis}} - {{$kelassiswa->siswa->nama}}</option>
             @endforeach
             </select>
             </div>

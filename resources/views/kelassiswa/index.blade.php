@@ -65,13 +65,13 @@ Kelas Siswa
                               @foreach ($Kelassiswa as $key => $kelassiswa)
                               <tr>
                                 <th class=" text-center" scope="row">{{ $Kelassiswa->firstItem()+ $key }}</th>
-                                <td scope="row" class="text-center">{{$kelassiswa->id_siswa}}</td>
-                                <td scope="row" class="text-center">{{$kelassiswa->id_siswa}}</td>
+                                <td scope="row" class="text-center">{{$kelassiswa->siswa->nis}}</td>
+                                <td scope="row" class="text-center">{{$kelassiswa->siswa->nama}}</td>
                                 <td scope="row" class="text-center">{{$kelassiswa->jurusan}}</td>
-                                <td scope="row" class="text-center">{{$kelassiswa->id_kelas}}</td>
-                                <td scope="row" class="text-center">{{$kelassiswa->id_kelas}}</td>
-                                <td scope="row" class="text-center">{{$kelassiswa->id_kelas}}</td>
-                                <td scope="row" class="text-center">{{$kelassiswa->id_guru}}</td>
+                                <td scope="row" class="text-center">{{$kelassiswa->kelas->tahun_ajaran}}</td>
+                                <td scope="row" class="text-center">{{$kelassiswa->kelas->kelas}}</td>
+                                <td scope="row" class="text-center">{{$kelassiswa->kelas->nama_kelas}}</td>
+                                <td scope="row" class="text-center">{{$kelassiswa->kelas->guru->nama}}</td>
                                 <td scope="row" class=" text-center">
                                   <a href="{{url('/editkelassiswa/'.$kelassiswa->id)}}"><button type="button" class="btn btn-warning" data-toggle="modal" data-target="#editModal"><i class="fa fa-edit">
                                     Edit
@@ -143,19 +143,10 @@ Kelas Siswa
     <select class="form-control" name="kelas" id="kelas" autofocus required>
       @foreach ( $Kelas as $kelas )
       <option selected disabled hidden>-- Pilih Kelas --</option>
-      <option value="{{$kelas->id}}">{{$kelas->tahun_ajaran}} - {{$kelas->kelas}} - {{$kelas->nama_kelas}}</option>
+      <option value="{{$kelas->id}}">{{$kelas->tahun_ajaran}} - {{$kelas->kelas}} - {{$kelas->nama_kelas}} - {{$kelas->guru->nama}} </option>
       @endforeach
     </select>
   </div>
-    <div id="div-guru" class="form-group">
-      <label>Nama Wali Kelas</label>
-      <select class="form-control" name="walikelas" id="walikelas" autofocus required>
-        @foreach ( $Guru as $guru )
-        <option selected disabled hidden>-- Pilih Guru --</option>
-        <option value="{{$guru->id}}">{{$guru->nama}}</option>
-        @endforeach
-      </select>
-    </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>

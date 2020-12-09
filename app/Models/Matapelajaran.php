@@ -15,6 +15,13 @@ class Matapelajaran extends Model
         'created_at',
         'updated_at'
     ];
+
+    
+    public function nilai()
+    {
+        return $this->hasMany(Nilai::class);
+    }
+    
    public function getmatapelajaranID()
    {
        return sprintf('P-%03d', $this->id);

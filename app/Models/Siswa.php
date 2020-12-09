@@ -33,6 +33,17 @@ class Siswa extends Model
         'email_verified_at' => 'datetime',
     ];
 
+    
+    public function nilai()
+    {
+        return $this->hasMany(Nilai::class);
+    }
+    
+    public function kelassiswa()
+    {
+        return $this->hasMany(Kelassiswa::class);
+    }
+
     public function getsiswaID()
     {
         return sprintf('Siswa-%03d', $this->id);

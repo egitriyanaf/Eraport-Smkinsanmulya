@@ -66,7 +66,7 @@ Laporan Kelas
                                 <td class=" text-center" scope="row">{{ $kelas->tahun_ajaran }}</td>
                                 <td class=" text-center" scope="row">{{ $kelas->kelas }}</td>
                                 <td class=" text-center" scope="row">{{ $kelas->nama_kelas }}</td>
-                                <td class=" text-center" scope="row">{{ $kelas->wali_kelas }}</td>
+                                <td class=" text-center" scope="row">{{ $kelas->guru->nama }}</td>
                               </tr>
                             </tbody>
                             @endforeach

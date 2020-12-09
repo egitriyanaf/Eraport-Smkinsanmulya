@@ -43,15 +43,21 @@ class UserController extends Controller
         } else {
             $id_personil = 0;
         }
-        $tambahuser=User::create([
-            'email' => $request->email,
-            'password' => Hash::make($request['password']),
-            'role' => $request->role,
-            'id_personil' => $id_personil
-            ]);
-          
-        
-        return redirect('/user')->with('status', 'data berhasil ditambahkan!');
+        try {
+            $tambahuser=User::create([
+                'email' => $request->email,
+                'password' => Hash::make($request['password']),
+                'role' => $request->role,
+                'id_personil' => $id_personil
+                ]);
+            
+            return redirect('/user')->with('status', 'data berhasil ditambahkan!');
+        } catch (\Illuminate\Database\QueryException $exception) {
+            $errorInfo = $exception->errorInfo;
+            return redirect('/user')
+            ->with('status', 'data gagal ditambahkan!', 'type', 'alert')
+            ->with('status', 'data berhasil ditambahkan!', 'type', 'sucess');
+        }
     }
 
     public function edituser($id)

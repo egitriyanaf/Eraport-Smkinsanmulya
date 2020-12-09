@@ -10,9 +10,9 @@ class Nilai extends Model
     protected $table='Nilai';
     protected $primarykey='id';
     protected $fillable = [
-        'id_siswa',
+        'kelassiswa_id',
         'semester',
-        'id_matapelajaran',
+        'matapelajaran_id',
         'tugas_1',
         'tugas_2',
         'tugas_3',
@@ -21,7 +21,18 @@ class Nilai extends Model
         'created_at',
         'updated_at'
     ];
-
+ 
+    public function kelassiswa()
+    {
+        return $this->belongsTo(Kelassiswa::class);
+    }
+        
+    public function matapelajaran()
+    {
+        return $this->belongsTo(Matapelajaran::class);
+    }
+    
+    
     public function getnilaiID()
    {
        return sprintf('N-%03d', $this->id);

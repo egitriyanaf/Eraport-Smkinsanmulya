@@ -34,7 +34,7 @@ class KelasController extends Controller
             'tahun_ajaran'=> $request->tahunajaran,
             'kelas'=> $request->kelas,
             'nama_kelas'=> $request->namakelas,
-            'wali_kelas' => $request->walikelas
+            'guru_id' => $request->walikelas
             ]);
         return redirect('/kelas')->with('status', 'data berhasil ditambahkan!');
     }
@@ -55,7 +55,7 @@ class KelasController extends Controller
             'tahun_ajaran'=> $request->tahunajaran,
             'kelas'=> $request->kelas,
             'nama_kelas'=> $request->namakelas,
-            'wali_kelas' => $request->walikelas        
+            'guru_id' => $request->walikelas        
             ]);
          return redirect('/kelas')->with('status', 'data berhasil diupdate!');
     }

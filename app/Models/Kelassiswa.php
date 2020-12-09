@@ -10,14 +10,30 @@ class Kelassiswa extends Model
     protected $table='kelassiswa';
     protected $primarykey='id';
     protected $fillable = [
-        'id_siswa',
+        'siswa_id',
         'jurusan',
-        'id_kelas',
-        'id_guru',
+        'kelas_id',
         'created_at',
         'updated_at'
     ];
 
+    
+    public function nilai()
+    {
+        return $this->hasmany(Nilai::class);
+    }
+    
+
+    public function siswa()
+    {
+        return $this->belongsTo(Siswa::class);
+    }
+
+    public function kelas()
+    {
+        return $this->belongsTo(Kelas::class);
+    }
+    
     public function getkelassiswaID()
    {
        return sprintf('KS-%03d', $this->id);

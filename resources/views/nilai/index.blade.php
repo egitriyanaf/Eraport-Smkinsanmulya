@@ -67,10 +67,10 @@ Nilai
                                 @foreach ($Nilai as $key => $nilai)
                               <tr>
                                 <th class=" text-center" scope="row">{{$Nilai->firstItem()+ $key}}</th>
-                                <td scope="row" class="text-center">{{$nilai->id_siswa}}</td>
-                                <td scope="row" class="text-center">{{$nilai->id_siswa}}</td>
+                                <td scope="row" class="text-center">{{$nilai->kelassiswa->siswa->nis}}</td>
+                                <td scope="row" class="text-center">{{$nilai->kelassiswa->siswa->nama}}</td>
                                 <td scope="row" class="text-center">{{$nilai->semester}}</td>
-                                <td scope="row" class="text-center">{{$nilai->id_matapelajaran}}</td>
+                                <td scope="row" class="text-center">{{$nilai->matapelajaran->nama_pelajaran}}</td>
                                 <td scope="row" class="text-center">{{$nilai->tugas_1}}</td>
                                 <td scope="row" class="text-center">{{$nilai->tugas_2}}</td>
                                 <td scope="row" class="text-center">{{$nilai->tugas_3}}</td>
@@ -132,9 +132,9 @@ Nilai
         <div id="div-siswa" class="form-group">
           <label>Siswa</label>
           <select class="form-control" name="siswa" id="siswa" autofocus required>
-            @foreach ( $Siswa as $siswa )
+            @foreach ( $Kelassiswa as $kelassiswa )
             <option selected disabled hidden>-- Pilih Siswa --</option>
-            <option value="{{$siswa->id}}">{{$siswa->nis}} - {{$siswa->nama}}</option>
+            <option value="{{$kelassiswa->id}}">{{$kelassiswa->siswa->nis}} - {{$kelassiswa->siswa->nama}}</option>
             @endforeach
           </select>
         </div>
@@ -150,7 +150,7 @@ Nilai
           <label>Mata Pelajaran</label>
           <select class="form-control" name="matapelajaran" id="matapelajaran" autofocus required>
             @foreach ( $Matapelajaran as $matapelajaran )
-            <option selected disabled hidden>-- Pilih Siswa --</option>
+            <option selected disabled hidden>-- Pilih Mata Pelajaran --</option>
             <option value="{{$matapelajaran->id}}">{{$matapelajaran->nama_pelajaran}}</option>
             @endforeach
           </select>

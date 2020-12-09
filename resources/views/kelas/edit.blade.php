@@ -75,7 +75,7 @@ Edit Kelas
         <select class="form-control" name="walikelas" id="walikelas" autofocus required>
           @foreach ( $Guru as $guru )
           <option selected disabled hidden>-- Pilih Guru --</option>
-          <option value="{{$guru->nama}}">{{$guru->nama}}</option>
+          <option value="{{$guru->id}}">{{$guru->nama}}</option>
           @endforeach
         </select>
       </div>

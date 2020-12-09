@@ -67,7 +67,7 @@ Kelas
                                 <td scope="row" class="text-center">{{ $kelas->tahun_ajaran }}</td>
                                 <td scope="row" class="text-center">{{ $kelas->kelas }}</td>
                                 <td scope="row" class="text-center">{{ $kelas->nama_kelas }}</td>
-                                <td scope="row" class="text-center">{{ $kelas->wali_kelas }}</td>
+                                <td scope="row" class="text-center">{{ $kelas->guru->nama }}</td>
                                 <td scope="row" class=" text-center">
                                   <a href="{{url('/editkelas/'.$kelas->id)}}"><button type="button" class="btn btn-warning" data-toggle="modal" data-target="#editModal"><i class="fa fa-edit">
                                     Edit
@@ -143,7 +143,7 @@ Kelas
           <select class="form-control" name="walikelas" id="walikelas" autofocus required>
             @foreach ( $Guru as $guru )
             <option selected disabled hidden>-- Pilih Guru --</option>
-            <option value="{{$guru->nama}}">{{$guru->nama}}</option>
+            <option value="{{$guru->id}}">{{$guru->nama}}</option>
             @endforeach
           </select>
         </div>

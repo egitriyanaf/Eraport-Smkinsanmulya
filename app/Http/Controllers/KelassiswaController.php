@@ -12,15 +12,14 @@ use App\Models\Kelas;
 class KelassiswaController extends Controller
 {
     public function index()
-    {   $kelas=Kelas::All();
-        $guru=Guru::All();
-        $siswa=Siswa::All();
+    {   
+        $siswa=Siswa::all();
+        $kelas = Kelas::all();
         $kelassiswa=Kelassiswa::paginate(10);
         $kelassiswa->useBootstrap();
         return view('/kelassiswa.index',[
             'Kelassiswa'=>$kelassiswa,
             'Kelas'=>$kelas,
-            'Guru'=>$guru,
             'Siswa'=>$siswa,
             ]);
     }
@@ -36,23 +35,20 @@ class KelassiswaController extends Controller
     public function tambahkelassiswa(Request $request)
     {
         Kelassiswa::create([
-            'id_siswa'=> $request->siswa,
-            'id_kelas'=> $request->kelas,
+            'siswa_id'=> $request->siswa,
+            'kelas_id'=> $request->kelas,
             'jurusan'=> $request->jurusan,
-            'id_guru' => $request->walikelas
             ]);
         return redirect('/kelassiswa')->with('status', 'data berhasil ditambahkan!');
     }
 
     public function editkelassiswa($id)
-    {   $kelas=Kelas::All();
-        $guru=Guru::All();
-        $siswa=Siswa::All();
+    {   $kelas=Kelas::all();
+        $siswa=Siswa::all();
         $kelassiswa=Kelassiswa::find($id);
       return view('/kelassiswa.edit',[
           'Kelas' => $kelas,
           'Kelassiswa' => $kelassiswa,
-          'Guru' => $guru,
           'Siswa' => $siswa
           ]);
     }
@@ -61,10 +57,9 @@ class KelassiswaController extends Controller
     {
         $kelassiswa=Kelassiswa::FindOrFail($id);
         $kelassiswa->update([
-            'id_siswa'=> $request->siswa,
-            'id_kelas'=> $request->kelas,
-            'jurusan'=> $request->jurusan,
-            'id_guru' => $request->walikelas     
+            'siswa_id'=> $request->siswa,
+            'kelas_id'=> $request->kelas,
+            'jurusan'=> $request->jurusan,   
             ]);
          return redirect('/kelassiswa')->with('status', 'data berhasil diupdate!');
     }

@@ -55,11 +55,11 @@ class User extends Authenticatable
 
     public function getKodeIdPersonil(String $id, String $role, String $id_personil) {
         if ($role == "Guru") {
-            $id_personil = "Guru-".$id_personil;
+            $id_personil = "G-".$id_personil;
         } else if ($role == "Siswa") {
-            $id_personil = "Siswa-".$id_personil; 
+            $id_personil = "S-".$id_personil; 
         } else {
-            $id_personil = "Admin-".$id;
+            $id_personil = "A-".$id;
         }
         return $id_personil;
     }

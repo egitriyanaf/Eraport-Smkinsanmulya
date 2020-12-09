@@ -27,7 +27,15 @@ class Guru extends Model
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    
 
+public function kelas()
+{
+    return $this->hasOne(Kelas::class);
+}
+
+    
+    
     public function getguruID()
     {
         return sprintf('Guru-%03d', $this->id);

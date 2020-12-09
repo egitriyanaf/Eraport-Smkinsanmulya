@@ -65,19 +65,11 @@ Edit Kelas Siswa
       <select class="form-control" name="kelas" id="kelas" autofocus required>
         @foreach ( $Kelas as $kelas )
         <option selected disabled hidden>-- Pilih Kelas --</option>
-        <option value="{{$kelas->id}}">{{$kelas->tahun_ajaran}} - {{$kelas->kelas}} - {{$kelas->nama_kelas}}</option>
+        <option value="{{$kelas->id}}">{{$kelas->tahun_ajaran}} - {{$kelas->kelas}} - {{$kelas->nama_kelas}} - {{$kelas->guru->nama}}</option>
         @endforeach
       </select>
     </div>
-      <div id="div-guru" class="form-group">
-        <label>Nama Wali Kelas</label>
-        <select class="form-control" name="walikelas" id="walikelas" autofocus required>
-          @foreach ( $Guru as $guru )
-          <option selected disabled hidden>-- Pilih Guru --</option>
-          <option value="{{$guru->id}}">{{$guru->nama}}</option>
-          @endforeach
-        </select>
-      </div>
+
         </div>
         <div class="modal-footer">
             <a href="{{url('/kelassiswa')}}" class="btn btn-secondary">Tutup</a>

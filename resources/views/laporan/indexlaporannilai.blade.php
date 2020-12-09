@@ -68,11 +68,11 @@ Laporan Nilai
                                 @foreach ($Nilai as $key => $nilai)
                               <tr>
                                 <th class=" text-center" scope="row">{{ $Nilai->firstItem() + $key }}</th>
-                                <td class=" text-center" scope="row">{{ $nilai->id_siswa}}</td>
-                                <td class=" text-center" scope="row">{{ $nilai->id_siswa}}</td>
-                                <td class=" text-center" scope="row">{{ $nilai->id_siswa}}</td>
-                                <td class=" text-center" scope="row">{{ $nilai->semester }}</td>
-                                <td class=" text-center" scope="row">{{ $nilai->id_matapelajaran }}</td>
+                                <td class=" text-center" scope="row">{{ $nilai->kelassiswa->siswa->nis}}</td>
+                                <td class=" text-center" scope="row">{{ $nilai->kelassiswa->siswa->nama}}</td>
+                                <td class=" text-center" scope="row">{{ $nilai->kelassiswa->jurusan}}</td>
+                                <td class=" text-center" scope="row">{{ $nilai->semester}}</td>
+                                <td class=" text-center" scope="row">{{ $nilai->matapelajaran->nama_pelajaran }}</td>
                                 <td class=" text-center" scope="row">{{ $nilai->tugas_1 }}</td>
                                 <td class=" text-center" scope="row">{{ $nilai->tugas_2 }}</td>
                                 <td class=" text-center" scope="row">{{ $nilai->tugas_3 }}</td>

@@ -4,18 +4,18 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Nilai;
-use App\Models\Siswa;
+use App\Models\Kelassiswa;
 use App\Models\Matapelajaran;
 
 class NilaiController extends Controller
 {
     public function index()
     {  $nilai= Nilai::paginate();
-       $siswa= Siswa::all();
+       $kelassiswa= Kelassiswa::all();
        $matapelajaran= Matapelajaran::all();
         return view('/nilai.index',[
             'Nilai'=>$nilai,
-            'Siswa'=>$siswa,
+            'Kelassiswa'=>$kelassiswa,
             'Matapelajaran'=>$matapelajaran
             ]);
     }
@@ -23,9 +23,9 @@ class NilaiController extends Controller
     public function tambahnilai(Request $request)
     {   
         Nilai::Create([
-        'id_siswa'=>$request->siswa,
+        'kelassiswa_id'=>$request->siswa,
         'semester'=>$request->semester,
-        'id_matapelajaran'=>$request->matapelajaran,
+        'matapelajaran_id'=>$request->matapelajaran,
         'tugas_1'=>$request->tugas1,
         'tugas_2'=>$request->tugas2,
         'tugas_3'=>$request->tugas3,
@@ -37,11 +37,11 @@ class NilaiController extends Controller
 
     public function editnilai($id)
     {   
-        $siswa=Siswa::All();
+        $kelassiswa=Kelassiswa::All();
         $matapelajaran=Matapelajaran::All();
         $nilai=Nilai::find($id);
       return view('/nilai.edit',[
-          'Siswa' => $siswa,
+          'Kelassiswa' => $kelassiswa,
           'Matapelajaran' => $matapelajaran,
           'Nilai' => $nilai,
           ]);
@@ -51,9 +51,9 @@ class NilaiController extends Controller
     {
         $nilai=Nilai::FindOrFail($id);
         $nilai->update([
-            'id_siswa'=>$request->siswa,
+            'kelassiswa_id'=>$request->siswa,
             'semester'=>$request->semester,
-            'id_matapelajaran'=>$request->matapelajaran,
+            'matapelajaran_id'=>$request->matapelajaran,
             'tugas_1'=>$request->tugas1,
             'tugas_2'=>$request->tugas2,
             'tugas_3'=>$request->tugas3,

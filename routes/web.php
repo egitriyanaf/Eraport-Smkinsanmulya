@@ -101,3 +101,6 @@ Route::get('/laporanguru', [LaporanController::class, 'indexlaporanguru'])->name
 Route::get('/laporankelas', [LaporanController::class, 'indexlaporankelas'])->name('laporankelas.index');
 Route::get('/laporannilai', [LaporanController::class, 'indexlaporannilai'])->name('laporannilai.index');
 Route::get('/laporanpelajaran', [LaporanController::class, 'indexlaporanpelajaran'])->name('laporanpelajaran.index');
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

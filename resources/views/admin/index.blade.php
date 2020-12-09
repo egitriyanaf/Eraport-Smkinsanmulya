@@ -1,14 +1,103 @@
 @extends('layouts.app')
 @push('adduserscript')
 <script>
+  function validateForm(){
+    var email = $("#email").val();
+    var password = $("#password").val();
+    var role = $('select[name=role] option').filter(':selected').val();
+    var guru = $('select[name=guru] option').filter(':selected').val();
+    var siswa = $('select[name=siswa] option').filter(':selected').val();
+
+    if (role == "Admin") {
+      return (
+        email != "" &&
+        password != "" &&
+        role != ""
+      )
+    } else if (role == "Guru") {
+      return (
+        email != "" &&
+        password != "" &&
+        role != "" &&
+        guru != ""
+      )
+    } else if (role == "Siswa") {
+      return (
+        email != "" &&
+        password != "" &&
+        role != "" &&
+        siswa != ""
+      )
+    } else {
+      return false;
+    }
+  }
+
+  function enableSubmitButton() {
+    $('#submit').prop("disabled", false);
+  }
+
+  function disableSubmitButton() {
+    $('#submit').prop("disabled", true);
+  }
+
+  function validateEmail(elementValue){      
+    var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+    return emailPattern.test(elementValue); 
+  } 
+
+  function validatePassword(elementValue){      
+    return elementValue.length >= 8; 
+  } 
+
+  function checkSubmitButton() {
+    if (validateForm()) {
+      enableSubmitButton();
+    } else {
+      disableSubmitButton();
+    }
+  }
+
   $(document).ready(function() {
     $("#div-guru").hide();
     $("#div-siswa").hide();
 
+    $(".modal").on('change', '#email', function(){
+      var email = $("#email").val();
+      if (email != "" && !validateEmail(email)) {
+        $("#error-email").text("Harap masukkan email valid.");
+        $("#valid-email").text("");
+        $("#email").addClass('is-invalid');
+        $("#email").removeClass('is-valid');
+      } else if (email != "" && validateEmail(email)) {
+        $("#error-email").text("");
+        $("#valid-email").text("Data sudah benar.");
+        $("#email").addClass('is-valid');
+        $("#email").removeClass('is-invalid');
+      }
+
+      checkSubmitButton();
+    });
+
+    $(".modal").on('change', '#password', function(){
+      var password = $("#password").val();
+      if (password != "" && !validatePassword(password)) {
+        $("#error-password").text("Harap masukkan password valid.");
+        $("#valid-password").text("");
+        $("#password").addClass('is-invalid');
+        $("#password").removeClass('is-valid');
+      } else if (password != "" && validatePassword(password)) {
+        $("#error-password").text("");
+        $("#valid-password").text("Data sudah benar.");
+        $("#password").addClass('is-valid');
+        $("#password").removeClass('is-invalid');
+      }
+
+      checkSubmitButton();
+    });
+
     $("select.role").change(function(){
       var selectedRole = $(this).children("option:selected").val();
-      {{--  alert("You have selected the role - " + selectedRole);  --}}
-
       if (selectedRole == "Guru") {
         $("#div-guru").show();
         $("#div-siswa").hide();
@@ -19,6 +108,16 @@
         $("#div-guru").hide();
         $("#div-siswa").hide();
       }
+
+      checkSubmitButton();
+    });
+
+    $("select.guru").change(function(){
+      checkSubmitButton();
+    });
+
+    $("select.siswa").change(function(){
+      checkSubmitButton();
     });
   });
 
@@ -80,7 +179,7 @@ Management Admin
                     
                     <div class="sparkline13-graph">
                         <div class="table-responsive">
-                        <table class="table table-striped table-bordered table-hover">
+                        <table class="table table-striped table-hover">
                             <thead>
                               <tr>
                                 <th class=" text-center" scope="col">No</th>
@@ -102,13 +201,13 @@ Management Admin
                                   <a href="{{url('/edituser/'.$user->id)}}"><button type="button" class="btn btn-warning" data-toggle="modal" data-target="#editModal"><i class="fa fa-edit">
                                     Edit
                                   </i></button></a>
-                                    <form action="{{url('/deleteuser/'.$user->id)}}" method="POST" class="d-inline" onsubmit="return confirm('Apakah yakin data ini ingin di hapus?')">
-                                        @method('delete')
-                                        @csrf
-                                        <button class="btn btn-danger btn-sm">
-                                          <i class="fa fa-trash"> Delete</i>
-                                        </button>
-                                      </form>
+                                  <form action="{{url('/deleteuser/'.$user->id)}}" method="POST" class="d-inline" onsubmit="return confirm('Apakah yakin data ini ingin di hapus?')">
+                                    @method('delete')
+                                    @csrf
+                                    <button class="btn btn-danger">
+                                      <i class="fa fa-trash"> Delete</i>
+                                    </button>
+                                  </form>
                                 </td>
                               </tr>
                             </tbody>
@@ -145,26 +244,31 @@ Management Admin
         </button>
       </div>
       <div class="modal-body">
-        <form action="{{ url('/tambahuser')}}" method="POST" enctype="multipart/form-data">
+        <form action="{{ url('/tambahuser')}}" class="needs-validation" method="POST" enctype="multipart/form-data">
           @csrf
           <div class="form-group">
             <label>Id User</label>
             <input type="text" name="Id" class="form-control" autofocus value="{{$user->getuserIDplus()}}" readonly>
-        </div>
+          </div>
           <div class="form-group">
               <label>Email</label>
-              <input type="email" name="email" id="email" class="form-control" maxlength="30" autofocus required>
+              <input type="email" name="email" id="email" class="form-control" maxlength="30" autofocus required placeholder="Masukkan Email">
+              <span class="valid-feedback" id="valid-email"></span>
+              <span class="invalid-feedback" id="error-email"></span>
           </div>
           <div class="form-group">
             <label>Password</label>
-            <input type="password" name="password" id="password" class="form-control" maxlength="30" autofocus required>
+            <input type="password" name="password" id="password" class="form-control" maxlength="30" autofocus required placeholder="Masukkan Password">
+            <small class="form-text text-muted" id="helper-password">Minimal 8 karakter.</small>
+            <span class="valid-feedback" id="valid-password"></span>
+            <div class="invalid-feedback" id="error-password"></div>
         </div>
         
         
         <div class="form-group">
           <label>Role</label>
           <select class="form-control role" name="role" id="role" autofocus required>
-            <option selected disabled hidden>-- Pilih Role --</option>
+            <option selected disabled hidden value="">-- Pilih Role --</option>
             <option value="Admin">Admin</option>
             <option value="Guru">Guru</option>
             <option value="Siswa">Siswa</option>
@@ -172,18 +276,18 @@ Management Admin
         </div>
         <div id="div-guru" class="form-group">
           <label>Guru</label>
-          <select class="form-control" name="guru" id="guru" autofocus required>
+          <select class="form-control guru" name="guru" id="guru" autofocus required>
             @foreach ( $Guru as $guru )
-            <option selected disabled hidden>-- Pilih Guru --</option>
+            <option selected disabled hidden value="">-- Pilih Guru --</option>
             <option value="{{$guru->id}}">({{$guru->nip}}) {{$guru->nama}}</option>
             @endforeach
           </select>
         </div>
         <div id="div-siswa" class="form-group">
           <label>Siswa</label>
-          <select class="form-control" name="siswa" id="siswa" autofocus required>
+          <select class="form-control siswa" name="siswa" id="siswa" autofocus required>
             @foreach ( $Siswa as $siswa )
-            <option selected disabled hidden>-- Pilih Siswa --</option>
+            <option selected disabled hidden value="">-- Pilih Siswa --</option>
             <option value="{{$siswa->id}}">({{$siswa->nis}}) {{$siswa->nama}}</option>
             @endforeach
           </select>
@@ -191,7 +295,7 @@ Management Admin
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-        <button type="submit" class="btn btn-primary">Simpan</button>
+        <button type="submit" class="btn btn-primary" disabled id="submit">Simpan</button>
       </div>
     </form>
     </div>
