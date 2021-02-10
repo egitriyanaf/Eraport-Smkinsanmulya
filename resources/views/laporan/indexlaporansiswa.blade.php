@@ -37,7 +37,7 @@ Laporan Siswa
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
   <div>
-      <a href="#" class="btn btn-primary pull-right"><i class="fa fa-print"> Cetak</i></a>
+      <a href="{{ url('/laporansiswa/cetak_pdf')}}" class="btn btn-primary pull-right"><i class="fa fa-print"> Cetak</i></a>
   </div>
                 <div class="sparkline13-list">
                     <div class="sparkline13-hd">

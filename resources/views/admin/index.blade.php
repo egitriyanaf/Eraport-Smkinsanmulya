@@ -99,7 +99,7 @@
         }
 
         function checkRole() {
-            var selectedRole = $(this).children("option:selected").val();
+            var selectedRole =  $("select.role").children("option:selected").val();
             if (selectedRole == "Guru") {
                 $("#div-guru").show();
                 $("#div-siswa").hide();

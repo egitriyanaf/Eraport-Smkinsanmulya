@@ -8,12 +8,21 @@ use App\Models\Guru;
 use App\Models\Kelas;
 use App\Models\Nilai;
 use App\Models\Matapelajaran;
+use PDF;
 class LaporanController extends Controller
 {
     public function indexlaporansiswa()
     {
         $siswa=Siswa::paginate(10);
         return view('/laporan.indexlaporansiswa', ['Siswa'=>$siswa]);
+    }
+
+    public function cetaklaporansiswa()
+    {
+        $siswa=Siswa::All();
+
+        $pdf= PDF::loadview('/siswa/siswa_pdf', ['Siswa'=>$siswa]);
+        return $pdf->stream();
     }
 
     public function indexlaporanguru()

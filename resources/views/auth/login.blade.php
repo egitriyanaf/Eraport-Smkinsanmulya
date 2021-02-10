@@ -46,12 +46,10 @@
                     <form action="{{ route('login') }}" method="POST">
                         @csrf
                         <div class="icon1">
-                            <span class="fa fa-user"></span>
-                            <input type="email" placeholder="Email" id="email" name="email" :value="old('email')" required autofocus/>
+                            <span class="fa fa-user"></span><input type="email" placeholder="Email" id="email" name="email" :value="old('email')" required autofocus/>
                         </div>
                         <div class="icon1">
-                            <span class="fa fa-lock"></span>
-                            <input type="password" placeholder="Password" id="password" name="password" required autocomplete="current-password"/>
+                            <span class="fa fa-lock"></span><input type="password" placeholder="Password" id="password" name="password" required autocomplete="current-password"/>
                         </div>
                         <div class="login-check">
                              <label class="checkbox"><input type="checkbox" id="remember_me" name="remember"><i> </i> Biarkan Saya Masuk</label>

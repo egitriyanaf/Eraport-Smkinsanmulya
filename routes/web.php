@@ -97,6 +97,7 @@ Route::get('/nilairaport', [NilairaportController::class, 'index'])->name('nilai
 
 //laporan
 Route::get('/laporansiswa', [LaporanController::class, 'indexlaporansiswa'])->name('laporansiswa.index');
+Route::get('/laporansiswa/cetak_pdf', [LaporanController::class, 'cetaklaporansiswa'])->name('laporansiswa.cetak');
 Route::get('/laporanguru', [LaporanController::class, 'indexlaporanguru'])->name('laporanguru.index');
 Route::get('/laporankelas', [LaporanController::class, 'indexlaporankelas'])->name('laporankelas.index');
 Route::get('/laporannilai', [LaporanController::class, 'indexlaporannilai'])->name('laporannilai.index');

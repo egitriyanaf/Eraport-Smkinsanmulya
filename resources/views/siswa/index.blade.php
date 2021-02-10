@@ -57,8 +57,8 @@ Management Siswa
                                 <th class=" text-center" scope="col">Nama Siswa</th>
                                 <th class=" text-center" scope="col">Jenis Kelamin</th>
                                 <th class=" text-center" scope="col">Telepon</th>
-                                <th class=" text-center" scope="col">Photo</th>
                                 <th class=" text-center" scope="col">Tanggal Lahir</th>
+                                <th class=" text-center" scope="col">Photo</th>
                                 <th class=" text-center" scope="col">Aksi</th>
                               </tr>
                             </thead>
@@ -79,7 +79,7 @@ Management Siswa
                                     <form action="{{url('/deletesiswa/'.$siswa->id)}}" method="POST" class="d-inline" onsubmit="return confirm('Apakah yakin data ini ingin di hapus?')">
                                         @method('delete')
                                         @csrf
-                                        <button class="btn btn-danger btn-sm">
+                                        <button class="btn btn-danger">
                                           <i class="fa fa-trash"> Delete</i>
                                         </button>
                                       </form>
